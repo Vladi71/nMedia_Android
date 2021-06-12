@@ -22,18 +22,16 @@ class Utils {
                 else -> String.format((count / 1000000.toDouble()).toString() + "M")
             }
         }
-        fun convertDate(s: String): String {
+        fun nowDate(l: Long): String {
             return try {
-                val formatter = DateTimeFormatter.ofPattern("dd MMMM в HH:mm ")
-                val currentDate = Instant.now().atZone(ZoneId.systemDefault())
+                val formatter = SimpleDateFormat("dd MMMM yyyy  HH:mm", Locale.getDefault())
+                val currentDate = Date(l * 1000)
                 formatter.format(currentDate)
             } catch (e: Exception) {
                 e.toString()
             }
         }
     }
-
-
 }
 
 object AndroidUtils {

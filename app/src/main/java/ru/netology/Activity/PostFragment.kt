@@ -34,7 +34,7 @@ class PostFragment : Fragment() {
             val post = it.posts.find { post -> post.id == id } ?: return@observe
             binding.contentTv.text = post.content
             binding.likeIb.isChecked = post.likedByMe
-            binding.publishedTv.text = Utils.convertDate(post.published)
+            binding.publishedTv.text = Utils.nowDate(post.published)
 
             binding.likeIb.setOnClickListener {
                 if (!post.likedByMe) {

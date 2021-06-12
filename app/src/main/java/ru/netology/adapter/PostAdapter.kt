@@ -47,7 +47,7 @@ class PostViewHolder(
         binding.apply {
             authorTv.text = "Нетология. Университет интернет-профессий будущего"
             contentTv.text = post.content
-            publishedTv.text = Utils.convertDate(post.published)
+            publishedTv.text = Utils.nowDate(post.published)
             likeIb.text = Utils.valueUpgrade(post.likes)
             likeIb.isChecked = post.likedByMe
 
