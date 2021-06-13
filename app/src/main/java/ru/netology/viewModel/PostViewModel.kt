@@ -75,24 +75,27 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = edited.value?.copy(content = text)
     }
 
-    fun likeById(id: Long) = thread {
-        val updatedPost = repository.likeById(id)
-        _data.postValue(
+    fun likeById(id: Long) {
+        thread {
+            val updatedPost = repository.likeById(id)
+            _data.postValue(
                 _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                        .map { if (it.id != updatedPost.id) it else updatedPost }
+                    .map { if (it.id != updatedPost.id) it else updatedPost }
                 )
-        )
+            )
+        }
     }
 
-    fun unLikeById(id: Long) = thread {
-        val updatedPost = repository.unLikeById(id)
-        _data.postValue(
+    fun unLikeById(id: Long) {
+        thread {
+            val updatedPost = repository.unLikeById(id)
+            _data.postValue(
                 _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                        .map { if (it.id != updatedPost.id) it else updatedPost }
+                    .map { if (it.id != updatedPost.id) it else updatedPost }
                 )
-        )
+            )
+        }
     }
-
 
     fun removeById(id: Long) {
         thread {
