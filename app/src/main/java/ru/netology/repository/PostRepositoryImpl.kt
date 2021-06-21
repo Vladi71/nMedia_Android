@@ -37,7 +37,6 @@ class PostRepositoryImpl : PostRepository {
             }
     }
 
-
     override fun getAllAsync(callback: PostRepository.GetAllCallback) {
         val request: Request = Request.Builder()
             .url("${BASE_URL}/posts")
@@ -81,7 +80,6 @@ class PostRepositoryImpl : PostRepository {
             })
     }
 
-
     override fun likeById(id: Long): Post {
         val request: Request = Request.Builder()
             .method("POST", body = "".toRequestBody())
@@ -97,7 +95,6 @@ class PostRepositoryImpl : PostRepository {
                 gson.fromJson(it, typePostToken.type)
             }
     }
-
 
     override fun unLikeById(id: Long): Post {
         val request: Request = Request.Builder()
