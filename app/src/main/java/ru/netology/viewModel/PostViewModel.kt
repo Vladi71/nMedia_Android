@@ -13,16 +13,18 @@ import java.io.IOException
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.Executors
 import kotlin.concurrent.thread
 
 
 private val empty = Post(
-        id = 0,
-        author = "",
-        content = "",
-        published = 0,
-        likedByMe = false,
-        likes = 0
+    id = 0,
+    author = "",
+    authorAvatar = "",
+    content = "",
+    published = 0,
+    likedByMe = false,
+    likes = 0
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
@@ -36,32 +38,35 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     val postCreated: LiveData<Unit>
         get() = _postCreated
 
+    private val executorService = Executors.newFixedThreadPool(64)
+
     init {
         loadPosts()
     }
 
     fun loadPosts() {
-        thread {
+        _data.value = FeedModel(loading = true)
+        repository.getAllAsync(object : PostRepository.GetAllCallback {
+            override fun onSuccess(posts: List<Post>) {
+                _data.postValue(FeedModel(posts = posts, empty = posts.isEmpty()))
+            }
 
-            _data.postValue(FeedModel(loading = true))
-            try {
-                val posts = repository.getAll()
-                FeedModel(posts = posts, empty = posts.isEmpty())
-            } catch (e: IOException) {
-                FeedModel(error = true)
-            }.also(_data::postValue)
-        }
+            override fun onError(e: Exception) {
+                _data.postValue(FeedModel(error = true))
+            }
+        })
     }
 
     fun save() {
         edited.value?.let {
-            thread {
+            executorService.execute {
                 repository.save(it)
                 _postCreated.postValue(Unit)
             }
         }
         edited.value = empty
     }
+
 
     fun edit(post: Post) {
         edited.value = post
@@ -75,35 +80,32 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = edited.value?.copy(content = text)
     }
 
-    fun likeById(id: Long) {
-        thread {
-            val updatedPost = repository.likeById(id)
-            _data.postValue(
-                _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                    .map { if (it.id != updatedPost.id) it else updatedPost }
-                )
+    fun likeById(id: Long) = executorService.execute {
+        val updatedPost = repository.likeById(id)
+        _data.postValue(
+            _data.value?.copy(posts = _data.value?.posts.orEmpty()
+                .map { if (it.id != updatedPost.id) it else updatedPost }
             )
-        }
+        )
     }
 
-    fun unLikeById(id: Long) {
-        thread {
-            val updatedPost = repository.unLikeById(id)
-            _data.postValue(
-                _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                    .map { if (it.id != updatedPost.id) it else updatedPost }
-                )
+    fun unLikeById(id: Long) = executorService.execute {
+        val updatedPost = repository.unLikeById(id)
+        _data.postValue(
+            _data.value?.copy(posts = _data.value?.posts.orEmpty()
+                .map { if (it.id != updatedPost.id) it else updatedPost }
             )
-        }
+        )
     }
+
 
     fun removeById(id: Long) {
-        thread {
+        executorService.execute {
             val old = _data.value?.posts.orEmpty()
             _data.postValue(
-                    _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                            .filter { it.id != id }
-                    )
+                _data.value?.copy(posts = _data.value?.posts.orEmpty()
+                    .filter { it.id != id }
+                )
             )
             try {
                 repository.removeById(id)

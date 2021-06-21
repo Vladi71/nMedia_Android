@@ -6,21 +6,22 @@ import ru.netology.dto.Post
 
 @Entity
 class PostEntity(
-        @PrimaryKey(autoGenerate = true)
-        val id: Long,
-        val author: String,
-        val content: String,
-        val published: Long,
-        val likedByMe: Boolean,
-        val likes: Int
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    val author: String,
+    val authorAvatar: String,
+    val content: String,
+    val published: Long,
+    val likedByMe: Boolean,
+    val likes: Int,
 ) {
     fun toDto() = Post(
-            id, author, content, published, likedByMe, likes
+        id, author, authorAvatar, content, published, likedByMe, likes
     )
 
     companion object {
-        fun fromDto(post: Post): PostEntity = with(post){
-            PostEntity(id, author, content, published, likedByMe, likes
+        fun fromDto(post: Post): PostEntity = with(post) {
+            PostEntity(id, author, authorAvatar, content, published, likedByMe, likes
             )
         }
 
