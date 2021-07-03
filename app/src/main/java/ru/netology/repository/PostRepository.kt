@@ -2,7 +2,6 @@ package ru.netology.repository
 
 
 import ru.netology.dto.Post
-import kotlin.concurrent.thread
 
 interface PostRepository {
     fun getAll(): List<Post>
@@ -11,17 +10,15 @@ interface PostRepository {
     fun removeById(id: Long)
     fun save(post: Post)
 
-    fun getAllAsync(callback: GetAllCallback)
-    fun getPostAsync(id: Long, callback: GetPostCallback)
+    fun getAllAsync(callback: Callback<List<Post>>)
+    fun getPostAsync(id: Long, callback: Callback<Post>)
+    fun likeByIdAsync(id: Long, callback: Callback<Post>)
+    fun unLikeByIdAsync(id: Long, callback: Callback<Post>)
+    fun saveAsync(post: Post, callback: Callback<Post>)
+    fun removeAsync(id: Long, callback: Callback<Post>)
 
-    interface GetAllCallback {
-        fun onSuccess(posts: List<Post>) {}
+    interface Callback<T> {
+        fun onSuccess(value: T) {}
         fun onError(e: Exception) {}
-    }
-
-    interface GetPostCallback {
-        fun onSuccess(posts: Post) {}
-        fun onError(e: Exception) {}
-
     }
 }
