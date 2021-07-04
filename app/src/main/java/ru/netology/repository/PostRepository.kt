@@ -15,7 +15,7 @@ interface PostRepository {
     fun likeByIdAsync(id: Long, callback: Callback<Post>)
     fun unLikeByIdAsync(id: Long, callback: Callback<Post>)
     fun saveAsync(post: Post, callback: Callback<Post>)
-    fun removeAsync(id: Long, callback: Callback<Post>)
+    fun removeAsync(id: Long, callback: Callback<Any>)
 
     interface Callback<T> {
         fun onSuccess(value: T) {}
