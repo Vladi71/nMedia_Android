@@ -7,6 +7,8 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.netology.R
 import ru.netology.Utils
 import ru.netology.databinding.CardPostBinding
@@ -50,8 +52,30 @@ class PostViewHolder(
             publishedTv.text = Utils.nowDate(post.published)
             likeIb.text = Utils.valueUpgrade(post.likes)
             likeIb.isChecked = post.likedByMe
+            val url = "http://10.0.2.2:9999/avatars/${post.authorAvatar}"
+            Glide.with(binding.avatarV)
+                .load(url)
+                .transform(RoundedCorners(80))
+                .placeholder(R.drawable.ic_baseline_cloud_download_24)
+                .error(R.drawable.ic_baseline_image_24)
+                .timeout(3000)
+                .into(binding.avatarV)
 
+            val urlImg = "http://10.0.2.2:9999/images/${post.attachment?.url}"
+            Glide.with(binding.imageIV)
+                .load(urlImg)
+                .placeholder(R.drawable.ic_baseline_cloud_download_24)
+                .error(R.drawable.ic_baseline_image_24)
+                .timeout(3000)
+                .into(binding.imageIV)
+
+            if (post.attachment == null ) {
+                imageIV.visibility = View.GONE
+            } else {
+                imageIV.visibility = View.VISIBLE
+            }
         }
+
         binding.likeIb.setOnClickListener {
             OnInteractionListener.onLike(post)
         }

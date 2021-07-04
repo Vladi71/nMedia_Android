@@ -16,7 +16,7 @@ import java.util.concurrent.Executors
 private val empty = Post(
     id = 0,
     author = "",
-    authorAvatar = "",
+    authorAvatar = "netology.jpg",
     content = "",
     published = 0,
     likedByMe = false,
