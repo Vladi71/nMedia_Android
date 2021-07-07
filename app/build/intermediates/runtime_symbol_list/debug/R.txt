@@ -2230,6 +2230,7 @@ int mipmap ic_launcher_round 0x7f0d0001
 int navigation nav_main 0x7f0e0000
 int plurals mtrl_badge_content_description 0x7f0f0000
 int string EnterTheText 0x7f100000
+int string IntError 0x7f10008b
 int string NumberLike 0x7f100001
 int string PostAuthor 0x7f100002
 int string PostContent 0x7f100003

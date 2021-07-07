@@ -20,4 +20,5 @@
     <string name="empty_posts">There are no posts.\nIf you create a new post, it will appear here</string>
     <string name="google_play_unavailable">Google Api Unavailable</string>
     <string name="EnterTheText">Enter the text!</string>
+    <string name="IntError">Ошибка! Повторите еще раз!</string>
 </resources>

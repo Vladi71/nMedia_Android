@@ -21,6 +21,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\6c4e8d2cfb755004ceee675d391236ae\\jetified-play-services-basement-17.6.0\\res\\values-ko\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "179",
+                        "endOffsets": "426"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "3738",
+                        "endColumns": "179",
+                        "endOffsets": "3913"
+                    }
+                },
+                {
                     "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\bb767f766273c4f32959c2b54375e9aa\\jetified-firebase-messaging-21.0.1\\res\\values-ko\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -55,23 +72,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\d303248d4e16183ea07d077324dff8f2\\jetified-play-services-basement-17.2.1\\res\\values-ko\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "179",
-                        "endOffsets": "426"
-                    },
-                    "to": {
-                        "startLines": "37",
-                        "startColumns": "4",
-                        "startOffsets": "3738",
-                        "endColumns": "179",
-                        "endOffsets": "3913"
-                    }
-                },
-                {
                     "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\f9d7da123bc95797b34c21bb202b9d6f\\core-1.3.2\\res\\values-ko\\values-ko.xml",
                     "from": {
                         "startLines": "2",
@@ -89,7 +89,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\1300cf7d1b23db21c16abe2f0d96d0d7\\jetified-play-services-base-17.0.0\\res\\values-ko\\values.xml",
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\20d26cef5a90eda006d5165e13048507\\jetified-play-services-base-17.6.0\\res\\values-ko\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

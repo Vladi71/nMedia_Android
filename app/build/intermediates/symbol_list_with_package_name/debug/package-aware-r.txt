@@ -2231,6 +2231,7 @@ mipmap ic_launcher_round
 navigation nav_main
 plurals mtrl_badge_content_description
 string EnterTheText
+string IntError
 string NumberLike
 string PostAuthor
 string PostContent

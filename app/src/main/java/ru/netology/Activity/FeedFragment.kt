@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -81,9 +82,14 @@ class FeedFragment : Fragment() {
         binding.listPost.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner, { state ->
             adapter.submitList(state.posts)
+            if (state.internetError) {
+                intError()
+                binding.errorGroup.isVisible = true
+            }
             binding.progress.isVisible = state.loading
             binding.errorGroup.isVisible = state.error
             binding.emptyText.isVisible = state.empty
+
         })
 
         binding.retryButton.setOnClickListener {
@@ -101,6 +107,14 @@ class FeedFragment : Fragment() {
 
         return binding.root
     }
+    fun intError(){
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.IntError),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
 
 }
 

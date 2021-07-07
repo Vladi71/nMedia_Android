@@ -1,12 +1,14 @@
 package ru.netology.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.SingleLiveEvent
 import ru.netology.dto.Post
 import ru.netology.model.FeedModel
+import ru.netology.repository.BadConnectionException
 import ru.netology.repository.PostRepository
 import ru.netology.repository.PostRepositoryImpl
 import java.io.IOException
@@ -41,34 +43,40 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadPosts() {
         _data.value = FeedModel(loading = true)
+
         repository.getAllAsync(object : PostRepository.Callback<List<Post>> {
             override fun onSuccess(posts: List<Post>) {
-                _data.postValue(FeedModel(posts = posts, empty = posts.isEmpty()))
+                _data.value = FeedModel(posts = posts, empty = posts.isEmpty())
             }
 
             override fun onError(e: Exception) {
-                _data.postValue(FeedModel(error = true))
+                if (e is BadConnectionException) {
+                    _data.value = FeedModel(internetError = true)
+                } else {
+                    _data.value = FeedModel(error = true)
+                }
             }
         })
     }
 
     fun save() {
         edited.value?.let {
-            repository.saveAsync(it, object : PostRepository.Callback<Post> {
-                override fun onSuccess(post: Post) {
-                    _data.postValue(
-                        FeedModel(posts = _data.value?.posts
-                            .orEmpty().map { if (it.id == post.id) post else it })
-                    )
-
+            repository.save(it, object : PostRepository.Callback<Post> {
+                override fun onSuccess(posts: Post) {
+                    _postCreated.value = Unit
                 }
 
                 override fun onError(e: Exception) {
-                    _postCreated.postValue(Unit)
+                    if (e is BadConnectionException) {
+                        _data.value = FeedModel(internetError = true)
+                    } else {
+                        _data.postValue(FeedModel(error = true))
+                    }
                 }
             })
-            edited.value = empty
+
         }
+        edited.value = empty
     }
 
 
@@ -85,64 +93,64 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun likeById(id: Long) {
-        repository.likeByIdAsync(id, object : PostRepository.Callback<Post> {
-            override fun onSuccess(value: Post) {
-                val updatedPost = repository.likeById(id)
+        repository.likeById(id, object : PostRepository.Callback<Post> {
+            override fun onSuccess(posts: Post) {
                 _data.postValue(
-                    _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                        .map { if (it.id != updatedPost.id) it else updatedPost }
-                    )
+                    FeedModel(posts = _data.value?.posts
+                        .orEmpty().map { if (it.id == posts.id) posts else it })
                 )
             }
 
             override fun onError(e: Exception) {
-                _data.postValue(FeedModel(error = true))
+                if (e is BadConnectionException) {
+                    _data.value = FeedModel(internetError = true)
+                } else {
+                    _data.postValue(FeedModel(error = true))
+                }
             }
         })
     }
 
+
     fun unLikeById(id: Long) {
-        repository.unLikeByIdAsync(id, object : PostRepository.Callback<Post> {
-            override fun onSuccess(value: Post) {
-                val updatedPost = repository.unLikeById(id)
+        repository.unLikeById(id, object : PostRepository.Callback<Post> {
+            override fun onSuccess(posts: Post) {
                 _data.postValue(
-                    _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                        .map { if (it.id != updatedPost.id) it else updatedPost }
-                    )
+                    FeedModel(posts = _data.value?.posts
+                        .orEmpty().map { if (it.id == posts.id) posts else it })
                 )
             }
 
             override fun onError(e: Exception) {
-                _data.postValue(FeedModel(error = true))
+                if (e is BadConnectionException) {
+                    _data.value = FeedModel(internetError = true)
+                } else {
+                    _data.postValue(FeedModel(error = true))
+                }
             }
         })
-
     }
 
 
     fun removeById(id: Long) {
-        val old = _data.value?.posts.orEmpty()
-        repository.removeAsync(id, object : PostRepository.Callback<Any> {
-            override fun onSuccess(value: Any) {
-
+        repository.removeById(id, object : PostRepository.Callback<Unit> {
+            override fun onSuccess(posts: Unit) {
                 _data.postValue(
                     _data.value?.copy(posts = _data.value?.posts.orEmpty()
                         .filter { it.id != id }
                     )
                 )
-                try {
-                    repository.removeById(id)
-                } catch (e: IOException) {
-                    _data.postValue(_data.value?.copy(posts = old))
-                    return
+            }
+
+            override fun onError(e: Exception) {
+                Log.e("exec", "GOT removeById onError")
+                if (e is BadConnectionException) {
+                    _data.value = FeedModel(internetError = true)
+                } else {
+                    _data.value = FeedModel(error = true)
                 }
             }
-            override fun onError(e: Exception) {
-                _data.postValue(FeedModel(error = true))
-
-            }
         })
-
     }
 
 
@@ -153,5 +161,6 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun cancelChange() {
         edited.value = edited.value
     }
+
 }
 
