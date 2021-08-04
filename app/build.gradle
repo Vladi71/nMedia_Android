@@ -58,6 +58,8 @@ android {
         def retrofitgson_version = "2.9.0"
         def okhttploggin_version = "4.9.1"
         def play_services_base_version = "17.6.0"
+        def coroutines_version = "1.5.0"
+
 
         implementation "androidx.activity:activity-ktx:1.1.0"
         implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -90,6 +92,7 @@ android {
         implementation "com.squareup.retrofit2:converter-gson:$retrofitgson_version"
         implementation "com.squareup.okhttp3:logging-interceptor:$okhttploggin_version"
         implementation "com.google.android.gms:play-services-base:$play_services_base_version"
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     }
 }
 

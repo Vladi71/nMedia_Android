@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.snackbar.Snackbar
 import ru.netology.R
 import ru.netology.adapter.OnInteractionListener
 import ru.netology.adapter.PostAdapter
@@ -80,16 +81,14 @@ class FeedFragment : Fragment() {
 
         })
         binding.listPost.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner, { state ->
-            adapter.submitList(state.posts)
-            if (state.internetError) {
-                intError()
-                binding.errorGroup.isVisible = true
-            }
+        viewModel.dataState.observe(viewLifecycleOwner, { state ->
             binding.progress.isVisible = state.loading
-            binding.errorGroup.isVisible = state.error
-            binding.emptyText.isVisible = state.empty
-
+            binding.swipeRefresh.isRefreshing = state.refreshing
+            if (state.error) {
+                Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.retry_loading) { viewModel.loadPosts() }
+                    .show()
+            }
         })
 
         binding.retryButton.setOnClickListener {
@@ -107,14 +106,6 @@ class FeedFragment : Fragment() {
 
         return binding.root
     }
-    fun intError(){
-        Toast.makeText(
-            requireContext(),
-            getString(R.string.IntError),
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
 
 }
 

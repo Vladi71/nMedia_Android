@@ -21,7 +21,8 @@ class AppActivity : AppCompatActivity() {
         val binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-                intent?.let {
+
+        intent?.let {
             if (it.action != Intent.ACTION_SEND) {
                 return@let
             }
@@ -29,10 +30,10 @@ class AppActivity : AppCompatActivity() {
             val text = it.getStringExtra(Intent.EXTRA_TEXT)
             if (text.isNullOrBlank()) {
                 Snackbar.make(binding.root, R.string.error_empty_content, LENGTH_INDEFINITE)
-                        .setAction(android.R.string.ok) {
-                            finish()
-                        }
-                        .show()
+                    .setAction(android.R.string.ok) {
+                        finish()
+                    }
+                    .show()
                 return@let
             }
         }
@@ -56,4 +57,5 @@ class AppActivity : AppCompatActivity() {
             println(it.token)
         }
     }
+
 }

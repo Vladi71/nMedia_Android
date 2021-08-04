@@ -13,7 +13,8 @@ class PostEntity(
     val content: String,
     val published: Long,
     val likedByMe: Boolean,
-    val likes: Int,
+    val likes: Int
+
 ) {
     fun toDto() = Post(
         id, author, authorAvatar, content, published, likedByMe, likes
@@ -27,3 +28,5 @@ class PostEntity(
 
     }
 }
+fun List<PostEntity>.toDto(): List<Post> = map(PostEntity::toDto)
+fun List<Post>.toEntity(): List<PostEntity> = map(PostEntity::fromDto)
