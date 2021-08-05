@@ -93,6 +93,7 @@ android {
         implementation "com.squareup.okhttp3:logging-interceptor:$okhttploggin_version"
         implementation "com.google.android.gms:play-services-base:$play_services_base_version"
         implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+        implementation "androidx.room:room-ktx:$room_version"
     }
 }
 

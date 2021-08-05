@@ -30,16 +30,19 @@ class FeedFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
+
+
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.loadPosts()
             binding.swipeRefresh.isRefreshing = false
             binding.swipeRefresh.setColorSchemeResources(
-                android.R.color.holo_purple
+                android.R.color.holo_red_dark,
+                android.R.color.holo_blue_dark
             )
         }
 
@@ -106,7 +109,6 @@ class FeedFragment : Fragment() {
 
         return binding.root
     }
-
 }
 
 
