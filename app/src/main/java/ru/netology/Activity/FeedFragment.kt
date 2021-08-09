@@ -38,8 +38,7 @@ class FeedFragment : Fragment() {
 
 
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.loadPosts()
-            binding.swipeRefresh.isRefreshing = false
+            viewModel.refreshPosts()
             binding.swipeRefresh.setColorSchemeResources(
                 android.R.color.holo_red_dark,
                 android.R.color.holo_blue_dark
@@ -84,15 +83,16 @@ class FeedFragment : Fragment() {
 
         })
         binding.listPost.adapter = adapter
-        viewModel.dataState.observe(viewLifecycleOwner, { state ->
+        viewModel.dataState.observe(viewLifecycleOwner) { state ->
             binding.progress.isVisible = state.loading
             binding.swipeRefresh.isRefreshing = state.refreshing
-            if (state.error) {
-                Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.retry_loading) { viewModel.loadPosts() }
-                    .show()
-            }
-        })
+            binding.errorGroup.isVisible = state.error
+        }
+
+        viewModel.data.observe(viewLifecycleOwner) {
+            adapter.submitList(it.posts)
+            binding.emptyText.isVisible = it.empty
+        }
 
         binding.retryButton.setOnClickListener {
             viewModel.loadPosts()

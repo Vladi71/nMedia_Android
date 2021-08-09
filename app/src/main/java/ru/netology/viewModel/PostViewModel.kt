@@ -1,6 +1,7 @@
 package ru.netology.viewModel
 
 import android.app.Application
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
@@ -49,8 +50,19 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             _dataState.value = FeedModelState(loading = true)
             repository.getAll()
             _dataState.value = FeedModelState()
+                  } catch (e: Exception) {
+            _dataState.value = FeedModelState(error = true)
+            println("ошибка $e")
+        }
+    }
+    fun refreshPosts() = viewModelScope.launch {
+        try {
+            _dataState.value = FeedModelState(refreshing = true)
+            repository.getAll()
+            _dataState.value = FeedModelState()
         } catch (e: Exception) {
             _dataState.value = FeedModelState(error = true)
+            println("ошибка2 $e")
         }
     }
 
@@ -78,8 +90,12 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         if (edited.value?.content == text) {
             return
         }
-        edited.value = edited.value?.copy(content = text)
+        edited.value =
+            edited.value?.copy(
+                content = text
+            )
     }
+
 
     fun likeById(id: Long) {
         edited.value?.let {
@@ -115,7 +131,6 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun unLikeById(id: Long) {
         edited.value?.let {
-
             _postCreated.value = Unit
             viewModelScope.launch {
                 try {

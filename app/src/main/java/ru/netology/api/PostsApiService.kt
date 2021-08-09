@@ -12,9 +12,8 @@ import ru.netology.dto.Post
 
 private const val BASE_URL = "${BuildConfig.BASE_URL}/api/"
 
-
 private val logging = HttpLoggingInterceptor().apply {
-    if (com.google.firebase.BuildConfig.DEBUG) {
+    if (BuildConfig.DEBUG) {
         level = HttpLoggingInterceptor.Level.BODY
     }
 }

@@ -1,7 +1,6 @@
 package ru.netology.repository
 
 
-
 import androidx.lifecycle.map
 import ru.netology.api.PostsApi
 import ru.netology.dao.PostDao
@@ -24,13 +23,14 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
-
             val body = response.body() ?: throw ApiError(response.code(), response.message())
             dao.insert(body.toEntity())
         } catch (e: IOException) {
             throw NetworkError
+
         } catch (e: Exception) {
             throw UnknownError
+
         }
     }
 
@@ -65,13 +65,13 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
     }
 
     override suspend fun likeById(id: Long) {
+        dao.likeById(id)
         try {
             val response = PostsApi.service.likeById(id)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
-
-            dao.likeById(id)
+            response.body() ?: throw ApiError(response.code(), response.message())
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {
@@ -80,13 +80,14 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
     }
 
     override suspend fun unLikeById(id: Long) {
+        dao.likeById(id)
         try {
-            val response = PostsApi.service.likeById(id)
+            val response = PostsApi.service.dislikeById(id)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
 
-            dao.likeById(id)
+            response.body() ?: throw ApiError(response.code(), response.message())
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {
@@ -94,5 +95,6 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
         }
     }
 }
+
 
 
