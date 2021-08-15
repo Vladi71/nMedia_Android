@@ -27,4 +27,5 @@
     <string name="google_play_unavailable">Google Api Недоступно</string>
     <string name="EnterTheText">Введите текст!</string>
     <string name="IntError">Ошибка! Повторите еще раз!</string>
+    <string name="recentEntries">Свежие записи</string>
 </resources>

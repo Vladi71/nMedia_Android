@@ -58,7 +58,7 @@ class PostViewHolder(
                 .transform(RoundedCorners(80))
                 .placeholder(R.drawable.ic_baseline_cloud_download_24)
                 .error(R.drawable.ic_baseline_image_24)
-                .timeout(3000)
+                .timeout(10000)
                 .into(binding.avatarV)
 
             val urlImg = "http://10.0.2.2:9999/images/${post.attachment?.url}"
@@ -66,7 +66,7 @@ class PostViewHolder(
                 .load(urlImg)
                 .placeholder(R.drawable.ic_baseline_cloud_download_24)
                 .error(R.drawable.ic_baseline_image_24)
-                .timeout(3000)
+                .timeout(10000)
                 .into(binding.imageIV)
 
             if (post.attachment == null ) {

@@ -1652,6 +1652,7 @@ drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable new_post_avatar
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1936,6 +1937,7 @@ id nav_main
 id navigation_header_container
 id never
 id newPostFragment
+id newPostsChip
 id noScroll
 id none
 id normal
@@ -2364,6 +2366,7 @@ string post_texts
 string post_url_video
 string project_id
 string quantity
+string recentEntries
 string remove
 string retry_loading
 string search_menu_title

@@ -1,17 +1,20 @@
 package ru.netology.repository
 
 
-import androidx.lifecycle.map
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import ru.netology.api.PostsApi
 import ru.netology.dao.PostDao
 import ru.netology.dto.Post
 import ru.netology.entity.PostEntity
+import ru.netology.entity.toApiEntity
 import ru.netology.entity.toDto
 import ru.netology.entity.toEntity
-import ru.netology.error.ApiError
-import ru.netology.error.NetworkError
-import ru.netology.error.UnknownError
+import ru.netology.error.*
 import java.io.IOException
+import java.sql.SQLException
 
 
 class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
@@ -31,6 +34,40 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
         } catch (e: Exception) {
             throw UnknownError
 
+        }
+    }
+
+    override fun getNewerCount(id: Long): Flow<Int> = flow {
+        while (true) {
+            delay(10_000L)
+            val response = PostsApi.service.getNewer(id)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+            dao.insert(body.toApiEntity())
+            emit(body.size)
+        }
+    }
+        .catch { e -> throw AppError.from(e) }
+        .flowOn(Dispatchers.Default)
+
+    override suspend fun markPostToShow() {
+        try {
+            dao.showOrNot(true)
+        } catch (e: SQLException) {
+            throw DbError
+        }
+    }
+
+    override suspend fun getPostById(id: Long): PostDao {
+        try {
+            return dao.getPostById(id)
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
         }
     }
 

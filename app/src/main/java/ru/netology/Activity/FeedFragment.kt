@@ -10,6 +10,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import ru.netology.R
@@ -102,12 +104,43 @@ class FeedFragment : Fragment() {
                 return@observe
             }
         }
+        viewModel.newerCount.observe(viewLifecycleOwner) { state ->
+            println(state)
+        }
+
+        viewModel.newerCount.observe(viewLifecycleOwner, { state ->
+            when {
+                state != 0 -> binding.newPostsChip.visibility = View.VISIBLE
+                else -> binding.newPostsChip.visibility = View.GONE
+            }
+        })
+
+        binding.newPostsChip.setOnClickListener {
+            viewModel.run {
+                makeReadPosts()
+                loadPosts()
+            }
+            binding.listPost.smoothSnapToPosition(0)
+            it.visibility = View.GONE
+        }
 
         binding.addPostView.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
         return binding.root
+    }
+
+    private fun RecyclerView.smoothSnapToPosition(
+        position: Int,
+        snapMode: Int = LinearSmoothScroller.SNAP_TO_START
+    ) {
+        val smoothScroller = object : LinearSmoothScroller(this.context) {
+            override fun getVerticalSnapPreference(): Int = snapMode
+            override fun getHorizontalSnapPreference(): Int = snapMode
+        }
+        smoothScroller.targetPosition = position
+        layoutManager?.startSmoothScroll(smoothScroller)
     }
 }
 
