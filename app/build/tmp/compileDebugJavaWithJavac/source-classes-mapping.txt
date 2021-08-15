@@ -3,6 +3,7 @@ ru/netology/dao/PostDao_Impl.java
  ru.netology.dao.PostDao_Impl$1
  ru.netology.dao.PostDao_Impl$10
  ru.netology.dao.PostDao_Impl$11
+ ru.netology.dao.PostDao_Impl$12
  ru.netology.dao.PostDao_Impl$2
  ru.netology.dao.PostDao_Impl$3
  ru.netology.dao.PostDao_Impl$4

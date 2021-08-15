@@ -45,6 +45,7 @@ class FeedFragment : Fragment() {
                 android.R.color.holo_red_dark,
                 android.R.color.holo_blue_dark
             )
+            binding.newPostsChip.visibility = View.GONE
         }
 
         val adapter = PostAdapter(object : OnInteractionListener {

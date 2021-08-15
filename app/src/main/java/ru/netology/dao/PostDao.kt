@@ -22,7 +22,7 @@ interface PostDao {
     suspend fun showOrNot(showOrNot: Boolean)
 
     @Query("""SELECT * FROM PostEntity WHERE id = :id""")
-    suspend fun getPostById(id: Long): PostDao
+    suspend fun getPostById(id: Long): PostEntity
 
     @Query("SELECT COUNT(*) == 0 FROM PostEntity")
     suspend fun isEmpty(): Boolean

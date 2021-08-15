@@ -5,6 +5,7 @@ package ru.netology.repository
 import kotlinx.coroutines.flow.Flow
 import ru.netology.dao.PostDao
 import ru.netology.dto.Post
+import ru.netology.entity.PostEntity
 
 
 interface PostRepository {
@@ -16,7 +17,7 @@ interface PostRepository {
         suspend fun getAll()
         fun getNewerCount(id: Long): Flow<Int>
         suspend fun markPostToShow()
-        suspend fun getPostById(id: Long): PostDao
+        suspend fun getPostById(id: Long): Post
 }
 
 

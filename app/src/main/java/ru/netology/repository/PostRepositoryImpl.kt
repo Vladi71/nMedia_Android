@@ -61,9 +61,9 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
         }
     }
 
-    override suspend fun getPostById(id: Long): PostDao {
+    override suspend fun getPostById(id: Long): Post {
         try {
-            return dao.getPostById(id)
+            return dao.getPostById(id).let { it.toDto() }
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {
