@@ -25,7 +25,8 @@ class PostEntity(
 
     companion object {
         fun fromDto(post: Post): PostEntity = with(post) {
-            PostEntity(id, author,
+            PostEntity(
+                id, author,
                 authorAvatar,
                 content,
                 published,
@@ -34,8 +35,10 @@ class PostEntity(
                 true
             )
         }
+
         fun fromApi(dto: Post) =
-            PostEntity(dto.id,
+            PostEntity(
+                dto.id,
                 dto.author,
                 dto.authorAvatar,
                 dto.content,
@@ -47,6 +50,7 @@ class PostEntity(
 
     }
 }
+
 fun List<PostEntity>.toDto(): List<Post> = map(PostEntity::toDto)
 fun List<Post>.toEntity(): List<PostEntity> = map(PostEntity::fromDto)
 fun List<Post>.toApiEntity(): List<PostEntity> = map(PostEntity::fromApi)
