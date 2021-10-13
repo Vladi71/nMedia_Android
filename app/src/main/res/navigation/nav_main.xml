@@ -12,14 +12,10 @@
         tools:layout="@layout/fragment_feed" >
         <action
             android:id="@+id/action_feedFragment_to_newPostFragment"
-            app:destination="@id/newPostFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit" />
+            app:destination="@id/newPostFragment" />
         <action
             android:id="@+id/action_feedFragment_to_editPostFragment"
-            app:destination="@id/editPostFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit" />
+            app:destination="@id/editPostFragment" />
         <action
             android:id="@+id/action_feedFragment_to_postFragment"
             app:destination="@id/postFragment" />

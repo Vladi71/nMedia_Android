@@ -24,6 +24,10 @@
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_cancel_24.xml.flat",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\drawable\\ic_baseline_cancel_24.xml"
+    },
+    {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
@@ -68,6 +72,10 @@
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\drawable\\view_avatar.xml"
     },
     {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\color_icon_button_tint.xml.flat",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\color\\icon_button_tint.xml"
+    },
+    {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
@@ -94,6 +102,10 @@
     {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_mode_edit_outline_2.xml.flat",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\drawable\\ic_baseline_mode_edit_outline_2.xml"
+    },
+    {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_photo_camera_24.xml.flat",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\drawable\\ic_baseline_photo_camera_24.xml"
     },
     {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_mode_edit_outline_24.xml.flat",
@@ -146,5 +158,9 @@
     {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_share_avatar.xml.flat",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\drawable\\share_avatar.xml"
+    },
+    {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_photo_24.xml.flat",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\drawable\\ic_baseline_photo_24.xml"
     }
 ]

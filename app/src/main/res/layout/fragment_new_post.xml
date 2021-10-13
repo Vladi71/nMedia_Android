@@ -25,6 +25,8 @@
         android:background="#FFFFFF"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
+
+
     <EditText
         android:id="@+id/contentEt"
         android:layout_width="match_parent"
@@ -33,15 +35,15 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="#FFFFFF"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/publishedBarrier"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/photoIv"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/saveIv"
@@ -86,6 +88,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="28dp"
+        android:background="#FFFFFF"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="@string/PostAuthor"
@@ -94,12 +97,75 @@
         app:layout_constraintStart_toEndOf="@+id/avatarV"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        android:background="#FFFFFF"
         tools:ignore="MissingConstraints" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/common_spacing"
+        android:layout_marginEnd="@dimen/common_spacing"
+        android:background="@color/divider_color"
+        app:layout_constraintBottom_toTopOf="@id/buttonPanel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pickPhoto"
+            style="@style/Widget.AppTheme.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_select_photo"
+            android:padding="@dimen/common_spacing"
+            app:icon="@drawable/ic_baseline_photo_24" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/takePhoto"
+            style="@style/Widget.AppTheme.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_take_photo"
+            android:padding="@dimen/common_spacing"
+            app:icon="@drawable/ic_baseline_photo_camera_24" />
+    </LinearLayout>
 
+    <ImageView
+        android:id="@+id/photoIv"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authorTv"
+        tools:src="@tools:sample/avatars"
+        android:visibility="visible"/>
 
+    <ImageView
+        android:id="@+id/cancelPhotoIm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_cancel_24"
+        app:layout_constraintBottom_toBottomOf="@+id/photoIv"
+        app:layout_constraintEnd_toEndOf="@+id/photoIv"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/photoIv"
+        app:layout_constraintTop_toTopOf="@+id/photoIv"
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/description_photo"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/photoContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="cancelPhotoIm, photoIv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

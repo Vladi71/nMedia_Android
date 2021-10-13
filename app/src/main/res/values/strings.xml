@@ -27,4 +27,7 @@
     <string name="EnterTheText">Введите текст!</string>
     <string name="IntError">Ошибка! Повторите еще раз!</string>
     <string name="recentEntries">Свежие записи</string>
+    <string name="description_select_photo">Select photo</string>
+    <string name="description_take_photo">Take photo</string>
+    <string name="description_photo">Photo</string>
 </resources>

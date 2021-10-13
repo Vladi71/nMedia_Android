@@ -1,8 +1,7 @@
 package ru.netology.viewModel
 
 import android.app.Application
-import android.content.ContentValues.TAG
-import android.util.Log
+import android.net.Uri
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,14 +9,15 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ru.netology.SingleLiveEvent
-import ru.netology.db.AppDb
+import ru.netology.dto.MediaUpload
 import ru.netology.dto.Post
 import ru.netology.model.FeedModel
 import ru.netology.model.FeedModelState
+import ru.netology.model.PhotoModel
+import ru.netology.nmedia.db.AppDb
 import ru.netology.repository.PostRepository
 import ru.netology.repository.PostRepositoryImpl
-import java.io.IOException
-import java.util.concurrent.Executors
+import java.io.File
 
 
 private val empty = Post(
@@ -29,6 +29,7 @@ private val empty = Post(
     likedByMe = false,
     likes = 0
 )
+private val noPhoto = PhotoModel()
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -50,6 +51,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     private val _postCreated = SingleLiveEvent<Unit>()
     val postCreated: LiveData<Unit>
         get() = _postCreated
+    private val _photo = MutableLiveData(noPhoto)
+    val photo: LiveData<PhotoModel>
+        get() = _photo
 
     init {
         loadPosts()
@@ -84,7 +88,12 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             _postCreated.value = Unit
             viewModelScope.launch {
                 try {
-                    repository.save(it)
+                    when(_photo.value) {
+                        noPhoto -> repository.save(it)
+                        else -> _photo.value?.file?.let { file ->
+                            repository.saveWithAttachment(it, MediaUpload(file))
+                        }
+                    }
                     _dataState.value = FeedModelState()
                 } catch (e: Exception) {
                     _dataState.value = FeedModelState(error = true)
@@ -92,6 +101,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         edited.value = empty
+        _photo.value = noPhoto
     }
 
     fun edit(post: Post) {
@@ -163,6 +173,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun cancelChange() {
         edited.value = edited.value
+    }
+
+    fun changePhoto(uri: Uri?, file: File?) {
+        _photo.value = PhotoModel(uri, file)
     }
 }
 

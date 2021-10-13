@@ -1,13 +1,14 @@
 package ru.netology.entity
 
-import android.text.Html
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ru.netology.dto.Attachment
 import ru.netology.dto.Post
+import ru.netology.nmedia.enumeration.AttachmentType
 
 @Entity
-class PostEntity(
+data class PostEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val author: String,
@@ -15,42 +16,42 @@ class PostEntity(
     val content: String,
     val published: Long,
     val likedByMe: Boolean,
-    val likes: Int,
-    val showOrNot: Boolean = false
-
+    val likes: Int = 0,
+    val showOrNot: Boolean = false,
+    @Embedded
+    var attachment: AttachmentEmbeddable?,
 ) {
-    fun toDto() = Post(
-        id, author, authorAvatar, content, published, likedByMe, likes, showOrNot
-    )
+    fun toDto() = Post(id, author, authorAvatar, content, published, likedByMe, likes, false , attachment?.toDto())
 
     companion object {
-        fun fromDto(post: Post): PostEntity = with(post) {
-            PostEntity(
-                id, author,
-                authorAvatar,
-                content,
-                published,
-                likedByMe,
-                likes,
-                true
-            )
-        }
-
-        fun fromApi(dto: Post) =
-            PostEntity(
-                dto.id,
+        fun fromDto(dto: Post) =
+            PostEntity(dto.id,
                 dto.author,
                 dto.authorAvatar,
                 dto.content,
                 dto.published,
                 dto.likedByMe,
                 dto.likes,
-                false
-            )
+                true,
+                AttachmentEmbeddable.fromDto(dto.attachment))
 
+
+    }
+
+}
+
+data class AttachmentEmbeddable(
+    var url: String,
+    var type: AttachmentType,
+) {
+    fun toDto() = Attachment(url, type)
+
+    companion object {
+        fun fromDto(dto: Attachment?) = dto?.let {
+            AttachmentEmbeddable(it.url, it.type)
+        }
     }
 }
 
 fun List<PostEntity>.toDto(): List<Post> = map(PostEntity::toDto)
 fun List<Post>.toEntity(): List<PostEntity> = map(PostEntity::fromDto)
-fun List<Post>.toApiEntity(): List<PostEntity> = map(PostEntity::fromApi)
