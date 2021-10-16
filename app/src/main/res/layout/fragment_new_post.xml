@@ -20,11 +20,10 @@
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
         app:layout_constraintStart_toEndOf="@+id/cancelIv"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#FFFFFF"
         app:srcCompat="@mipmap/ic_launcher_round" />
-
 
 
     <EditText
@@ -51,9 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#FFFFFF"
         app:srcCompat="@drawable/save_avatar" />
 
     <ImageView
@@ -62,8 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
         android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/saveIv"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/add_avatar" />
@@ -98,24 +97,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:ignore="MissingConstraints" />
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="@dimen/common_spacing"
-        android:layout_marginEnd="@dimen/common_spacing"
-        android:background="@color/divider_color"
-        app:layout_constraintBottom_toTopOf="@id/buttonPanel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
+
     <LinearLayout
         android:id="@+id/buttonPanel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="576dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/authorTv"
+        app:layout_constraintVertical_bias="0.18">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/pickPhoto"
@@ -134,38 +126,37 @@
             android:contentDescription="@string/description_take_photo"
             android:padding="@dimen/common_spacing"
             app:icon="@drawable/ic_baseline_photo_camera_24" />
+
     </LinearLayout>
 
     <ImageView
         android:id="@+id/photoIv"
-        android:layout_width="134dp"
-        android:layout_height="134dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/authorTv"
-        tools:src="@tools:sample/avatars"
-        android:visibility="visible"/>
-
-    <ImageView
-        android:id="@+id/cancelPhotoIm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_cancel_24"
-        app:layout_constraintBottom_toBottomOf="@+id/photoIv"
-        app:layout_constraintEnd_toEndOf="@+id/photoIv"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/photoIv"
-        app:layout_constraintTop_toTopOf="@+id/photoIv"
-        app:layout_constraintVertical_bias="0.0"
-        android:contentDescription="@string/description_photo"/>
+        app:layout_constraintTop_toBottomOf="@+id/buttonPanel"
+        tools:src="@tools:sample/avatars" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/photoContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="cancelPhotoIm, photoIv" />
+
+    <ImageView
+        android:id="@+id/cancelPhotoIm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/description_photo"
+        android:src="@drawable/ic_baseline_cancel_24"
+        app:layout_constraintEnd_toEndOf="@+id/photoIv"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/photoIv"
+        app:layout_constraintTop_toTopOf="@+id/photoIv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

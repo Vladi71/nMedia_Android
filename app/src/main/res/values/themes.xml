@@ -28,4 +28,10 @@
         <item name="iconTint">@color/like_checkbox_tint</item>
 
     </style>
+
+    <style name="white" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/white</item>
+
+    </style>
+
 </resources>

@@ -20,6 +20,7 @@ interface OnInteractionListener {
     fun onEdit(post: Post) {}
     fun onCancelEdit(post: Post) {}
     fun onOpenPost(post: Post) {}
+    fun onOpenPhoto(post: Post) {}
 }
 
 class PostAdapter(
@@ -61,7 +62,7 @@ class PostViewHolder(
                 .timeout(10000)
                 .into(binding.avatarV)
 
-            val urlImg = "http://10.0.2.2:9999/images/${post.attachment?.url}"
+            val urlImg = "http://10.0.2.2:9999/media/${post.attachment?.url}"
             Glide.with(binding.imageIV)
                 .load(urlImg)
                 .placeholder(R.drawable.ic_baseline_cloud_download_24)
@@ -82,6 +83,9 @@ class PostViewHolder(
 
         binding.contentTv.setOnClickListener {
             OnInteractionListener.onOpenPost(post)
+        }
+        binding.imageIV.setOnClickListener {
+            OnInteractionListener.onOpenPhoto(post)
         }
 
         binding.menuIb.setOnClickListener {

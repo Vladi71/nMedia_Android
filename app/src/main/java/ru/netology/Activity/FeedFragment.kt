@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
+import ru.netology.Activity.PhotoFragment.Companion.urlArg
 import ru.netology.R
 import ru.netology.adapter.OnInteractionListener
 import ru.netology.adapter.PostAdapter
@@ -80,9 +81,15 @@ class FeedFragment : Fragment() {
                 viewModel.openPost(post)
                 val bundle = Bundle()
                 bundle.putLong("id", post.id)
-
                 findNavController().navigate(R.id.action_feedFragment_to_postFragment, bundle)
             }
+            override fun onOpenPhoto(post: Post) {
+                viewModel.openPost(post)
+                val bundle = Bundle()
+                bundle.putString("id",post.attachment?.url )
+                findNavController().navigate(R.id.action_feedFragment_to_photoFragment, bundle)
+            }
+
 
         })
         binding.listPost.adapter = adapter
@@ -128,6 +135,7 @@ class FeedFragment : Fragment() {
         binding.addPostView.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
+
 
         return binding.root
     }
