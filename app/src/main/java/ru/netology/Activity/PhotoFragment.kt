@@ -36,11 +36,11 @@ class PhotoFragment : Fragment() {
     ): View? {
         val binding = FragmentPhotoBinding.inflate(inflater, container, false)
 
-       binding.backToThePostMb.setOnClickListener {
+        binding.backToThePostMb.setOnClickListener {
             findNavController().navigateUp()
         }
         fragmentBinding = binding
-        val id = arguments?.getString(  "id")
+        val id = arguments?.getString("id")
         val urlImg = "http://10.0.2.2:9999/media/${id}"
         Glide.with(binding.photoV)
             .load(urlImg)
