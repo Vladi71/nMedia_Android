@@ -5,11 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.view.View.VISIBLE
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -42,7 +39,6 @@ class NewPostFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
-
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -81,17 +77,19 @@ class NewPostFragment : Fragment() {
                 .crop()
                 .compress(2048)
                 .galleryOnly()
-                .galleryMimeTypes(arrayOf(
-                    "image/png",
-                    "image/jpeg",
-                ))
+                .galleryMimeTypes(
+                    arrayOf(
+                        "image/png",
+                        "image/jpeg",
+                    )
+                )
                 .start(photoRequestCode)
             binding.buttonPanel.visibility = View.GONE
         }
-        binding.addIv.setOnClickListener{
-            if (!binding.buttonPanel.isVisible){
+        binding.addIv.setOnClickListener {
+            if (!binding.buttonPanel.isVisible) {
                 binding.buttonPanel.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.buttonPanel.visibility = View.GONE
             }
         }
@@ -135,11 +133,14 @@ class NewPostFragment : Fragment() {
 
         binding.saveIv.setOnClickListener {
             if (TextUtils.isEmpty(binding.contentEt.text)) {
-                Toast.makeText(
+                val toast = Toast.makeText(
                     requireContext(),
                     getString(R.string.EnterTheText),
-                    Toast.LENGTH_SHORT
-                ).show()
+                    Toast.LENGTH_SHORT,
+
+                    )
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
                 return@setOnClickListener
             } else {
                 val contentText = binding.contentEt.text.toString()

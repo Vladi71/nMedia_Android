@@ -75,6 +75,7 @@ class PostViewHolder(
             } else {
                 imageIV.visibility = View.VISIBLE
             }
+
         }
 
         binding.likeIb.setOnClickListener {
@@ -87,10 +88,12 @@ class PostViewHolder(
         binding.imageIV.setOnClickListener {
             OnInteractionListener.onOpenPhoto(post)
         }
-
+        binding.menuIb.visibility = if (post.ownedByMe) View.VISIBLE else View.INVISIBLE
         binding.menuIb.setOnClickListener {
             PopupMenu(it.context, it).apply {
                 inflate(R.menu.options_post)
+                // TODO: if we don't have other options, just remove dots
+                menu.setGroupVisible(R.id.owned, post.ownedByMe)
                 setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.Remove -> {

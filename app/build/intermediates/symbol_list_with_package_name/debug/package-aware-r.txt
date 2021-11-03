@@ -2080,6 +2080,7 @@ id action_feedFragment_to_editPostFragment
 id action_feedFragment_to_newPostFragment
 id action_feedFragment_to_photoFragment
 id action_feedFragment_to_postFragment
+id action_feedFragment_to_signInFragment
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -2107,6 +2108,7 @@ id anticipate
 id arc
 id asConfigured
 id async
+id authenticated
 id authorTv
 id auto
 id autoComplete
@@ -2213,6 +2215,7 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id enterBt
 id errorGroup
 id exitUntilCollapsed
 id expand_activities_button
@@ -2254,6 +2257,7 @@ id ignore
 id ignoreRequest
 id image
 id imageIV
+id imageView
 id image_view_crop
 id image_view_logo
 id image_view_state_aspect_ratio
@@ -2284,6 +2288,7 @@ id linear
 id listMode
 id listPost
 id list_item
+id loginEt
 id lytCameraPick
 id lytGalleryPick
 id masked
@@ -2372,12 +2377,14 @@ id on
 id outline
 id outward
 id overshoot
+id owned
 id packed
 id parallax
 id parent
 id parentPanel
 id parentRelative
 id parent_matrix
+id passwordEt
 id password_toggle
 id path
 id pathRelative
@@ -2442,6 +2449,10 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id signInFragment
+id signin
+id signout
+id signup
 id sin
 id skipCollapsed
 id skipped
@@ -2505,6 +2516,8 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView2
+id textView3
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -2538,6 +2551,7 @@ id triangle
 id ucrop
 id ucrop_frame
 id ucrop_photobox
+id unauthenticated
 id unchecked
 id uniform
 id unlabeled
@@ -2660,6 +2674,7 @@ layout fragment_feed
 layout fragment_new_post
 layout fragment_photo
 layout fragment_post
+layout fragment_sign_in
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
@@ -2735,12 +2750,14 @@ layout ucrop_fragment_photobox
 layout ucrop_layout_rotate_wheel
 layout ucrop_layout_scale_wheel
 layout ucrop_view
+menu menu_main
 menu options_post
 menu ucrop_menu_activity
 mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_main
 plurals mtrl_badge_content_description
+string EnterTheLogAndPass
 string EnterTheText
 string IntError
 string NumberLike
@@ -2811,6 +2828,7 @@ string description_take_photo
 string edit
 string edit_tv
 string empty_posts
+string enter
 string error_camera_app_not_found
 string error_empty_content
 string error_failed_pick_gallery_image
@@ -2834,6 +2852,7 @@ string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string image_picker_provider_authority_suffix
 string item_view_role_description
+string login
 string material_clock_display_divider
 string material_clock_toggle_content_description
 string material_hour_selection
@@ -2898,6 +2917,7 @@ string notification_user_liked
 string notification_user_post
 string numberShare
 string numberView
+string password
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
@@ -2915,6 +2935,9 @@ string remove
 string retry_loading
 string search_menu_title
 string shooser_intent_post
+string sign_in
+string sign_out
+string sign_up
 string status_bar_notification_info_overflow
 string title_camera
 string title_choose_image_provider

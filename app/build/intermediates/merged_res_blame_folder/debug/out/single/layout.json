@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_sign_in.xml",
+        "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\layout\\fragment_sign_in.xml"
+    },
+    {
         "merged": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_edit_post.xml",
         "source": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\layout\\fragment_edit_post.xml"
     },

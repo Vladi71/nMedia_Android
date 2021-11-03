@@ -30,4 +30,11 @@
     <string name="description_select_photo">Select photo</string>
     <string name="description_take_photo">Take photo</string>
     <string name="description_photo">Photo</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sing Up</string>
+    <string name="sign_out">Sing Out</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="enter">Enter</string>
+    <string name="EnterTheLogAndPass">Введите логин или пароль!</string>
 </resources>

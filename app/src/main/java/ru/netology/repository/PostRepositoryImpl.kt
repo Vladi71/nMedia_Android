@@ -22,6 +22,7 @@ import java.sql.SQLException
 
 
 class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
+
     override val data = dao.getAll().map(List<PostEntity>::toDto)
 
     override suspend fun getAll() {
@@ -34,10 +35,8 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
             dao.insert(body.toEntity())
         } catch (e: IOException) {
             throw NetworkError
-
         } catch (e: Exception) {
             throw UnknownError
-
         }
     }
 

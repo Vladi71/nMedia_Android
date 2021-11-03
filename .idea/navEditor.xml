@@ -34,8 +34,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="393" />
+                            <option name="x" value="-326" />
+                            <option name="y" value="309" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -56,6 +56,11 @@
                               </value>
                             </entry>
                             <entry key="action_feedFragment_to_postFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_feedFragment_to_signInFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -106,6 +111,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="signInFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="18" />
+                            <option name="y" value="675" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

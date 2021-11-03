@@ -2,9 +2,7 @@ package ru.netology.Activity
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -19,6 +17,8 @@ import ru.netology.adapter.OnInteractionListener
 import ru.netology.adapter.PostAdapter
 import ru.netology.databinding.FragmentFeedBinding
 import ru.netology.dto.Post
+import ru.netology.nmedia.auth.AppAuth
+import ru.netology.viewModel.AuthViewModel
 import ru.netology.viewModel.PostViewModel
 
 class FeedFragment : Fragment() {
@@ -27,6 +27,43 @@ class FeedFragment : Fragment() {
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
+private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::requireParentFragment)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+
+        menu?.let {
+            it.setGroupVisible(R.id.unauthenticated, !authViewModel.authenticated)
+            it.setGroupVisible(R.id.authenticated, authViewModel.authenticated)
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.signin -> {
+                findNavController().navigate(R.id.action_feedFragment_to_signInFragment)
+                AppAuth.getInstance().setAuth(5, "x-token")
+                true
+            }
+            R.id.signup -> {
+                // TODO: just hardcode it, implementation must be in homework
+                AppAuth.getInstance().setAuth(5, "x-token")
+                true
+            }
+            R.id.signout -> {
+                // TODO: just hardcode it, implementation must be in homework
+                AppAuth.getInstance().removeAuth()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
 
 
     override fun onCreateView(
@@ -36,7 +73,6 @@ class FeedFragment : Fragment() {
     ): View? {
 
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
-
 
 
         binding.swipeRefresh.setOnRefreshListener {

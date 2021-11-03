@@ -48,52 +48,53 @@ public final class PostDao_Impl implements PostDao {
     this.__insertionAdapterOfPostEntity = new EntityInsertionAdapter<PostEntity>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR REPLACE INTO `PostEntity` (`id`,`author`,`authorAvatar`,`content`,`published`,`likedByMe`,`likes`,`showOrNot`,`url`,`type`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `PostEntity` (`id`,`authorId`,`author`,`authorAvatar`,`content`,`published`,`likedByMe`,`likes`,`showOrNot`,`url`,`type`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
       public void bind(SupportSQLiteStatement stmt, PostEntity value) {
         stmt.bindLong(1, value.getId());
+        stmt.bindLong(2, value.getAuthorId());
         if (value.getAuthor() == null) {
-          stmt.bindNull(2);
-        } else {
-          stmt.bindString(2, value.getAuthor());
-        }
-        if (value.getAuthorAvatar() == null) {
           stmt.bindNull(3);
         } else {
-          stmt.bindString(3, value.getAuthorAvatar());
+          stmt.bindString(3, value.getAuthor());
         }
-        if (value.getContent() == null) {
+        if (value.getAuthorAvatar() == null) {
           stmt.bindNull(4);
         } else {
-          stmt.bindString(4, value.getContent());
+          stmt.bindString(4, value.getAuthorAvatar());
         }
-        stmt.bindLong(5, value.getPublished());
+        if (value.getContent() == null) {
+          stmt.bindNull(5);
+        } else {
+          stmt.bindString(5, value.getContent());
+        }
+        stmt.bindLong(6, value.getPublished());
         final int _tmp;
         _tmp = value.getLikedByMe() ? 1 : 0;
-        stmt.bindLong(6, _tmp);
-        stmt.bindLong(7, value.getLikes());
+        stmt.bindLong(7, _tmp);
+        stmt.bindLong(8, value.getLikes());
         final int _tmp_1;
         _tmp_1 = value.getShowOrNot() ? 1 : 0;
-        stmt.bindLong(8, _tmp_1);
+        stmt.bindLong(9, _tmp_1);
         final AttachmentEmbeddable _tmpAttachment = value.getAttachment();
         if(_tmpAttachment != null) {
           if (_tmpAttachment.getUrl() == null) {
-            stmt.bindNull(9);
+            stmt.bindNull(10);
           } else {
-            stmt.bindString(9, _tmpAttachment.getUrl());
+            stmt.bindString(10, _tmpAttachment.getUrl());
           }
           final String _tmp_2;
           _tmp_2 = __converters.fromAttachmentType(_tmpAttachment.getType());
           if (_tmp_2 == null) {
-            stmt.bindNull(10);
+            stmt.bindNull(11);
           } else {
-            stmt.bindString(10, _tmp_2);
+            stmt.bindString(11, _tmp_2);
           }
         } else {
-          stmt.bindNull(9);
           stmt.bindNull(10);
+          stmt.bindNull(11);
         }
       }
     };
@@ -239,6 +240,7 @@ public final class PostDao_Impl implements PostDao {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
           final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfAuthorId = CursorUtil.getColumnIndexOrThrow(_cursor, "authorId");
           final int _cursorIndexOfAuthor = CursorUtil.getColumnIndexOrThrow(_cursor, "author");
           final int _cursorIndexOfAuthorAvatar = CursorUtil.getColumnIndexOrThrow(_cursor, "authorAvatar");
           final int _cursorIndexOfContent = CursorUtil.getColumnIndexOrThrow(_cursor, "content");
@@ -253,6 +255,8 @@ public final class PostDao_Impl implements PostDao {
             final PostEntity _item;
             final long _tmpId;
             _tmpId = _cursor.getLong(_cursorIndexOfId);
+            final long _tmpAuthorId;
+            _tmpAuthorId = _cursor.getLong(_cursorIndexOfAuthorId);
             final String _tmpAuthor;
             if (_cursor.isNull(_cursorIndexOfAuthor)) {
               _tmpAuthor = null;
@@ -303,7 +307,7 @@ public final class PostDao_Impl implements PostDao {
             }  else  {
               _tmpAttachment = null;
             }
-            _item = new PostEntity(_tmpId,_tmpAuthor,_tmpAuthorAvatar,_tmpContent,_tmpPublished,_tmpLikedByMe,_tmpLikes,_tmpShowOrNot,_tmpAttachment);
+            _item = new PostEntity(_tmpId,_tmpAuthorId,_tmpAuthor,_tmpAuthorAvatar,_tmpContent,_tmpPublished,_tmpLikedByMe,_tmpLikes,_tmpShowOrNot,_tmpAttachment);
             _result.add(_item);
           }
           return _result;
@@ -363,6 +367,7 @@ public final class PostDao_Impl implements PostDao {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
           final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfAuthorId = CursorUtil.getColumnIndexOrThrow(_cursor, "authorId");
           final int _cursorIndexOfAuthor = CursorUtil.getColumnIndexOrThrow(_cursor, "author");
           final int _cursorIndexOfAuthorAvatar = CursorUtil.getColumnIndexOrThrow(_cursor, "authorAvatar");
           final int _cursorIndexOfContent = CursorUtil.getColumnIndexOrThrow(_cursor, "content");
@@ -376,6 +381,8 @@ public final class PostDao_Impl implements PostDao {
           if(_cursor.moveToFirst()) {
             final long _tmpId;
             _tmpId = _cursor.getLong(_cursorIndexOfId);
+            final long _tmpAuthorId;
+            _tmpAuthorId = _cursor.getLong(_cursorIndexOfAuthorId);
             final String _tmpAuthor;
             if (_cursor.isNull(_cursorIndexOfAuthor)) {
               _tmpAuthor = null;
@@ -426,7 +433,7 @@ public final class PostDao_Impl implements PostDao {
             }  else  {
               _tmpAttachment = null;
             }
-            _result = new PostEntity(_tmpId,_tmpAuthor,_tmpAuthorAvatar,_tmpContent,_tmpPublished,_tmpLikedByMe,_tmpLikes,_tmpShowOrNot,_tmpAttachment);
+            _result = new PostEntity(_tmpId,_tmpAuthorId,_tmpAuthor,_tmpAuthorAvatar,_tmpContent,_tmpPublished,_tmpLikedByMe,_tmpLikes,_tmpShowOrNot,_tmpAttachment);
           } else {
             _result = null;
           }
