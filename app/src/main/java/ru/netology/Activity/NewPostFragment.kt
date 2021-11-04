@@ -137,14 +137,12 @@ class NewPostFragment : Fragment() {
                     requireContext(),
                     getString(R.string.EnterTheText),
                     Toast.LENGTH_SHORT,
-
                     )
                 toast.setGravity(Gravity.CENTER, 0, 0)
                 toast.show()
                 return@setOnClickListener
             } else {
                 val contentText = binding.contentEt.text.toString()
-
                 viewModel.changeContent(contentText)
                 viewModel.save()
                 AndroidUtils.hideKeyboard(requireView())

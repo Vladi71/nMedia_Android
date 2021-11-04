@@ -47,7 +47,7 @@ private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::require
         return when (item.itemId) {
             R.id.signin -> {
                 findNavController().navigate(R.id.action_feedFragment_to_signInFragment)
-                AppAuth.getInstance().setAuth(5, "x-token")
+               // AppAuth.getInstance().setAuth(5, "x-token")
                 true
             }
             R.id.signup -> {

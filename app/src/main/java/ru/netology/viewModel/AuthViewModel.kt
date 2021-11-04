@@ -8,7 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.netology.SingleLiveEvent
 import ru.netology.Utils
-import ru.netology.dto.AuthUser
 import ru.netology.nmedia.auth.AppAuth
 import ru.netology.nmedia.auth.AuthState
 import ru.netology.nmedia.viewmodel.UserModel

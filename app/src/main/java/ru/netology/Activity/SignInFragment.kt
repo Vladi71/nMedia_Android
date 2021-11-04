@@ -44,24 +44,29 @@ class SignInFragment : Fragment() {
                 ru.netology.AndroidUtils.hideKeyboard(this)
                 findNavController().navigateUp()
             }
+        }
 
-            binding.enterBt.setOnClickListener {
-                if (TextUtils.isEmpty(binding.loginEt.text)) {
-                    val toast = Toast.makeText(
-                        requireContext(),
-                        getString(R.string.EnterTheLogAndPass),
-                        Toast.LENGTH_SHORT
-                    )
-                    toast.setGravity(Gravity.CENTER, 0, 0)
-                    toast.show()
-                    return@setOnClickListener
-                } else {
-                    val login = binding.loginEt.text.toString()
-                    val password = binding.passwordEt.text.toString()
-                    authViewModel.updateUserAuth(login, password)
-                }
+        binding.enterBt.setOnClickListener {
+            if (TextUtils.isEmpty(binding.loginEt.text) || TextUtils.isEmpty(binding.passwordEt.text)) {
+                val toast = Toast.makeText(
+                    requireContext(),
+                    getString(R.string.EnterTheLogAndPass),
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
+                return@setOnClickListener
+            } else {
+                authViewModel.updateUserAuth(
+                    binding.loginEt.text.toString(),
+                    binding.passwordEt.text.toString()
+                )
+                findNavController().navigateUp()
             }
+
         }
         return binding.root
     }
+
 }
+
