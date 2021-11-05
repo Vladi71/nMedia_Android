@@ -4,6 +4,10 @@
         "source": "C:\\Users\\Anna\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\layout\\card_post.xml"
     },
     {
+        "merged": "C:\\Users\\Anna\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_sign_up.xml",
+        "source": "C:\\Users\\Anna\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\layout\\fragment_sign_up.xml"
+    },
+    {
         "merged": "C:\\Users\\Anna\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_post.xml",
         "source": "C:\\Users\\Anna\\AndroidStudioProjects\\nMedia_Android\\app\\src\\main\\res\\layout\\fragment_post.xml"
     },

@@ -47,12 +47,10 @@ private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::require
         return when (item.itemId) {
             R.id.signin -> {
                 findNavController().navigate(R.id.action_feedFragment_to_signInFragment)
-               // AppAuth.getInstance().setAuth(5, "x-token")
                 true
             }
             R.id.signup -> {
-                // TODO: just hardcode it, implementation must be in homework
-                AppAuth.getInstance().setAuth(5, "x-token")
+                findNavController().navigate(R.id.action_feedFragment_to_signUpFragment)
                 true
             }
             R.id.signout -> {
@@ -88,10 +86,14 @@ private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::require
 
 
             override fun onLike(post: Post) {
-                if (!post.likedByMe) {
-                    viewModel.likeById(post.id)
-                } else {
-                    viewModel.unLikeById(post.id)
+                if (!AppAuth.getInstance().authStateFlow.value.token.isNullOrBlank()){
+                    if (!post.likedByMe) {
+                        viewModel.likeById(post.id)
+                    } else {
+                        viewModel.unLikeById(post.id)
+                    }
+                }else{
+                    findNavController().navigate(R.id.action_feedFragment_to_signInFragment)
                 }
             }
 
@@ -169,9 +171,12 @@ private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::require
         }
 
         binding.addPostView.setOnClickListener {
-            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
+            if (!AppAuth.getInstance().authStateFlow.value.token.isNullOrBlank()) {
+                findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
+            } else {
+                findNavController().navigate(R.id.action_feedFragment_to_signInFragment)
+            }
         }
-
 
         return binding.root
     }

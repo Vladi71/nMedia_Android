@@ -37,4 +37,9 @@
     <string name="password">Password</string>
     <string name="enter">Enter</string>
     <string name="EnterTheLogAndPass">Введите логин или пароль!</string>
+    <string name="elseSingUp">или зарегистрироваться</string>
+    <string name="name">Name</string>
+    <string name="repPassword">Повторите пароль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="elseSingIn">или войти</string>
 </resources>

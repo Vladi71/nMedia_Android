@@ -27,9 +27,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.NMedia"
         android:usesCleartextTraffic="true" >
-        <activity
-            android:name="ru.netology.Activity.AppActivity"
-            android:windowSoftInputMode="adjustResize" >
+        <activity android:name="ru.netology.Activity.AppActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 

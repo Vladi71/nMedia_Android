@@ -42,8 +42,11 @@ class SignInFragment : Fragment() {
                 setText("")
                 clearFocus()
                 ru.netology.AndroidUtils.hideKeyboard(this)
-                findNavController().navigateUp()
+                findNavController().navigate(R.id.action_signInFragment_to_feedFragment)
             }
+        }
+        binding.singUpTV.setOnClickListener{
+            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
         binding.enterBt.setOnClickListener {
@@ -61,9 +64,9 @@ class SignInFragment : Fragment() {
                     binding.loginEt.text.toString(),
                     binding.passwordEt.text.toString()
                 )
+
                 findNavController().navigateUp()
             }
-
         }
         return binding.root
     }

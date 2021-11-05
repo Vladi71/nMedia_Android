@@ -16,7 +16,6 @@
         tools:targetApi="m">
 
         <activity
-            android:windowSoftInputMode="adjustResize"
             android:name=".Activity.AppActivity">
             <nav-graph android:value="@navigation/nav_main" />
 

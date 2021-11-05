@@ -2080,6 +2080,7 @@ int id action_feedFragment_to_newPostFragment 0x7f080041
 int id action_feedFragment_to_photoFragment 0x7f080042
 int id action_feedFragment_to_postFragment 0x7f080043
 int id action_feedFragment_to_signInFragment 0x7f080044
+int id action_feedFragment_to_signUpFragment 0x7f080239
 int id action_image 0x7f080045
 int id action_menu_divider 0x7f080046
 int id action_menu_presenter 0x7f080047
@@ -2087,6 +2088,10 @@ int id action_mode_bar 0x7f080048
 int id action_mode_bar_stub 0x7f080049
 int id action_mode_close_button 0x7f08004a
 int id action_postFragment_to_editPostFragment 0x7f08004b
+int id action_signInFragment_to_feedFragment 0x7f080243
+int id action_signInFragment_to_signUpFragment 0x7f08023a
+int id action_signUpFragment_to_feedFragment 0x7f080244
+int id action_signUpFragment_to_signInFragment 0x7f08023b
 int id action_text 0x7f08004c
 int id actions 0x7f08004d
 int id activity_chooser_view_content 0x7f08004e
@@ -2349,6 +2354,7 @@ int id mtrl_picker_text_input_range_start 0x7f08014e
 int id mtrl_picker_title_text 0x7f08014f
 int id mtrl_view_tag_bottom_padding 0x7f080150
 int id multiply 0x7f080151
+int id nameEt 0x7f08023c
 int id nav_controller_view_tag 0x7f080152
 int id nav_host_fragment 0x7f080153
 int id nav_host_fragment_container 0x7f080154
@@ -2407,6 +2413,8 @@ int id publishedTv 0x7f080188
 int id radio 0x7f080189
 int id ratio 0x7f08018a
 int id rectangles 0x7f08018b
+int id registerBt 0x7f08023d
+int id repPasswordEt 0x7f08023e
 int id retryButton 0x7f08018c
 int id retryTitle 0x7f08018d
 int id reverseSawtooth 0x7f08018e
@@ -2449,10 +2457,13 @@ int id showCustom 0x7f0801b2
 int id showHome 0x7f0801b3
 int id showTitle 0x7f0801b4
 int id signInFragment 0x7f0801b5
+int id signUpFragment 0x7f08023f
 int id signin 0x7f0801b6
 int id signout 0x7f0801b7
 int id signup 0x7f0801b8
 int id sin 0x7f0801b9
+int id singInTV 0x7f080240
+int id singUpTV 0x7f080238
 int id skipCollapsed 0x7f0801ba
 int id skipped 0x7f0801bb
 int id slide 0x7f0801bc
@@ -2515,8 +2526,10 @@ int id textSpacerNoTitle 0x7f0801f4
 int id textStart 0x7f0801f5
 int id textTop 0x7f0801f6
 int id textView 0x7f0801f7
+int id textView1 0x7f080241
 int id textView2 0x7f0801f8
 int id textView3 0x7f0801f9
+int id textView4 0x7f080242
 int id text_input_end_icon 0x7f0801fa
 int id text_input_error_icon 0x7f0801fb
 int id text_input_start_icon 0x7f0801fc
@@ -2674,6 +2687,7 @@ int layout fragment_new_post 0x7f0b0031
 int layout fragment_photo 0x7f0b0032
 int layout fragment_post 0x7f0b0033
 int layout fragment_sign_in 0x7f0b0034
+int layout fragment_sign_up 0x7f0b0080
 int layout material_chip_input_combo 0x7f0b0035
 int layout material_clock_display 0x7f0b0036
 int layout material_clock_display_divider 0x7f0b0037
@@ -2826,6 +2840,8 @@ int string description_select_photo 0x7f100042
 int string description_take_photo 0x7f100043
 int string edit 0x7f100044
 int string edit_tv 0x7f100045
+int string elseSingIn 0x7f1000c3
+int string elseSingUp 0x7f1000c2
 int string empty_posts 0x7f100046
 int string enter 0x7f100047
 int string error_camera_app_not_found 0x7f100048
@@ -2909,6 +2925,7 @@ int string mtrl_picker_toggle_to_calendar_input_mode 0x7f100095
 int string mtrl_picker_toggle_to_day_selection 0x7f100096
 int string mtrl_picker_toggle_to_text_input_mode 0x7f100097
 int string mtrl_picker_toggle_to_year_selection 0x7f100098
+int string name 0x7f1000c4
 int string nav_app_bar_navigate_up_description 0x7f100099
 int string nav_app_bar_open_drawer_description 0x7f10009a
 int string nmedia 0x7f10009b
@@ -2930,7 +2947,9 @@ int string post_url_video 0x7f1000aa
 int string project_id 0x7f1000ab
 int string quantity 0x7f1000ac
 int string recentEntries 0x7f1000ad
+int string register 0x7f1000c5
 int string remove 0x7f1000ae
+int string repPassword 0x7f1000c6
 int string retry_loading 0x7f1000af
 int string search_menu_title 0x7f1000b0
 int string shooser_intent_post 0x7f1000b1

@@ -2081,6 +2081,7 @@ id action_feedFragment_to_newPostFragment
 id action_feedFragment_to_photoFragment
 id action_feedFragment_to_postFragment
 id action_feedFragment_to_signInFragment
+id action_feedFragment_to_signUpFragment
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -2088,6 +2089,10 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_postFragment_to_editPostFragment
+id action_signInFragment_to_feedFragment
+id action_signInFragment_to_signUpFragment
+id action_signUpFragment_to_feedFragment
+id action_signUpFragment_to_signInFragment
 id action_text
 id actions
 id activity_chooser_view_content
@@ -2350,6 +2355,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id nameEt
 id nav_controller_view_tag
 id nav_host_fragment
 id nav_host_fragment_container
@@ -2408,6 +2414,8 @@ id publishedTv
 id radio
 id ratio
 id rectangles
+id registerBt
+id repPasswordEt
 id retryButton
 id retryTitle
 id reverseSawtooth
@@ -2450,10 +2458,13 @@ id showCustom
 id showHome
 id showTitle
 id signInFragment
+id signUpFragment
 id signin
 id signout
 id signup
 id sin
+id singInTV
+id singUpTV
 id skipCollapsed
 id skipped
 id slide
@@ -2516,8 +2527,10 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView1
 id textView2
 id textView3
+id textView4
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -2675,6 +2688,7 @@ layout fragment_new_post
 layout fragment_photo
 layout fragment_post
 layout fragment_sign_in
+layout fragment_sign_up
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
@@ -2827,6 +2841,8 @@ string description_select_photo
 string description_take_photo
 string edit
 string edit_tv
+string elseSingIn
+string elseSingUp
 string empty_posts
 string enter
 string error_camera_app_not_found
@@ -2910,6 +2926,7 @@ string mtrl_picker_toggle_to_calendar_input_mode
 string mtrl_picker_toggle_to_day_selection
 string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
+string name
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
 string nmedia
@@ -2931,7 +2948,9 @@ string post_url_video
 string project_id
 string quantity
 string recentEntries
+string register
 string remove
+string repPassword
 string retry_loading
 string search_menu_title
 string shooser_intent_post
