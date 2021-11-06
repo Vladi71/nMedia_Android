@@ -51,22 +51,32 @@ class SignUpFragment : Fragment() {
         }
 
         binding.registerBt.setOnClickListener {
-            if (TextUtils.isEmpty(binding.loginEt.text) || TextUtils.isEmpty(binding.passwordEt.text)) {
+            if (TextUtils.isEmpty(binding.loginEt.text) || TextUtils.isEmpty(binding.passwordEt.text)
+                || TextUtils.isEmpty(binding.nameEt.text)|| TextUtils.isEmpty(binding.repPasswordEt.text)) {
                 val toast = Toast.makeText(
                     requireContext(),
-                    getString(R.string.EnterTheLogAndPass),
+                    getString(R.string.fillInAllTheFields),
                     Toast.LENGTH_SHORT
                 )
                 toast.setGravity(Gravity.CENTER, 0, 0)
                 toast.show()
                 return@setOnClickListener
-            } else {
+            } else if (binding.repPasswordEt.text != binding.passwordEt.text){
+                    val toast = Toast.makeText(
+                        requireContext(),
+                        getString(R.string.passwordDoesnMatch),
+                        Toast.LENGTH_SHORT
+                    )
+                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    toast.show()
+                    return@setOnClickListener
+                }else{
                 authViewModel.updateUserAuth(
                     binding.loginEt.text.toString(),
                     binding.passwordEt.text.toString()
                 )
 
-                findNavController().navigateUp()
+                //findNavController().navigateUp()
             }
         }
         return binding.root

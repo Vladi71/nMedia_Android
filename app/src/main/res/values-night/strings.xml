@@ -37,4 +37,6 @@
     <string name="repPassword">Повторите пароль</string>
     <string name="register">Зарегистрироваться</string>
     <string name="elseSingIn">или войти</string>
+    <string name="fillInAllTheFields">Заполните все поля!</string>
+    <string name="passwordDoesnMatch">Пароль не совпадает!</string>
 </resources>

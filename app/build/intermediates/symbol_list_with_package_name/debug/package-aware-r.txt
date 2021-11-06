@@ -2858,6 +2858,7 @@ string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string fcm_fallback_notification_channel_label
+string fillInAllTheFields
 string gcm_defaultSenderId
 string google_api_key
 string google_app_id
@@ -2935,6 +2936,7 @@ string notification_user_post
 string numberShare
 string numberView
 string password
+string passwordDoesnMatch
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
