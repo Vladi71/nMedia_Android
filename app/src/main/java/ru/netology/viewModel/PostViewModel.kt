@@ -24,7 +24,7 @@ import java.io.File
 
 private val empty = Post(
     id = 0,
-    author = "Нетология. Университет интернет-профессий будущего",
+    author = "",
     authorId = 0,
     authorAvatar = "netology.jpg",
     content = "",

@@ -29,4 +29,19 @@ class UserRepositoryImpl() : UserRepository {
             throw UnknownError
         }
     }
+
+    override suspend fun regUser(login: String, pass: String, name: String): AuthUser {
+        try {
+            val response = PostsApi.service.registerUser(login, pass, name)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            loginUser(login, pass)
+            return response.body() ?: throw ApiError(response.code(), response.message())
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
+        }
+    }
 }

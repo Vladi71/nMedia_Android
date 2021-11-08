@@ -10,9 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import ru.netology.AndroidUtils
 import ru.netology.R
-import ru.netology.databinding.FragmentSignInBinding
 import ru.netology.databinding.FragmentSignUpBinding
 import ru.netology.viewModel.AuthViewModel
 import ru.netology.viewModel.PostViewModel
@@ -46,13 +44,14 @@ class SignUpFragment : Fragment() {
                 findNavController().navigate(R.id.action_signUpFragment_to_feedFragment)
             }
         }
-        binding.singInTV.setOnClickListener{
+        binding.singInTV.setOnClickListener {
             findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
         }
 
         binding.registerBt.setOnClickListener {
             if (TextUtils.isEmpty(binding.loginEt.text) || TextUtils.isEmpty(binding.passwordEt.text)
-                || TextUtils.isEmpty(binding.nameEt.text)|| TextUtils.isEmpty(binding.repPasswordEt.text)) {
+                || TextUtils.isEmpty(binding.nameEt.text) || TextUtils.isEmpty(binding.repPasswordEt.text)
+            ) {
                 val toast = Toast.makeText(
                     requireContext(),
                     getString(R.string.fillInAllTheFields),
@@ -61,22 +60,24 @@ class SignUpFragment : Fragment() {
                 toast.setGravity(Gravity.CENTER, 0, 0)
                 toast.show()
                 return@setOnClickListener
-            } else if (binding.repPasswordEt.text != binding.passwordEt.text){
-                    val toast = Toast.makeText(
-                        requireContext(),
-                        getString(R.string.passwordDoesnMatch),
-                        Toast.LENGTH_SHORT
-                    )
-                    toast.setGravity(Gravity.CENTER, 0, 0)
-                    toast.show()
-                    return@setOnClickListener
-                }else{
-                authViewModel.updateUserAuth(
-                    binding.loginEt.text.toString(),
-                    binding.passwordEt.text.toString()
-                )
 
-                //findNavController().navigateUp()
+            } else if (binding.repPasswordEt.text.toString() != binding.passwordEt.text.toString()) {
+                val toast = Toast.makeText(
+                    requireContext(),
+                    getString(R.string.passwordDoesnMatch),
+                    Toast.LENGTH_SHORT
+                )
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
+                return@setOnClickListener
+            } else {
+
+                authViewModel.updateSingUp(
+                    binding.loginEt.text.toString(),
+                    binding.passwordEt.text.toString(),
+                    binding.nameEt.text.toString()
+                )
+                findNavController().navigate(R.id.action_signUpFragment_to_feedFragment)
             }
         }
         return binding.root

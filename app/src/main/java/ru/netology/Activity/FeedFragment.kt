@@ -27,12 +27,13 @@ class FeedFragment : Fragment() {
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
-private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::requireParentFragment)
+    private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main, menu)
 
@@ -54,15 +55,12 @@ private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::require
                 true
             }
             R.id.signout -> {
-                // TODO: just hardcode it, implementation must be in homework
                 AppAuth.getInstance().removeAuth()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
-
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -86,17 +84,16 @@ private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::require
 
 
             override fun onLike(post: Post) {
-                if (!AppAuth.getInstance().authStateFlow.value.token.isNullOrBlank()){
+                if (!AppAuth.getInstance().authStateFlow.value.token.isNullOrBlank()) {
                     if (!post.likedByMe) {
                         viewModel.likeById(post.id)
                     } else {
                         viewModel.unLikeById(post.id)
                     }
-                }else{
+                } else {
                     findNavController().navigate(R.id.action_feedFragment_to_signInFragment)
                 }
             }
-
 
             override fun onRemove(post: Post) {
                 viewModel.removeById(post.id)
@@ -111,7 +108,6 @@ private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::require
 
             override fun onCancelEdit(post: Post) {
                 viewModel.cancelChange()
-
             }
 
             override fun onOpenPost(post: Post) {
@@ -127,7 +123,6 @@ private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::require
                 bundle.putString("id", post.attachment?.url)
                 findNavController().navigate(R.id.action_feedFragment_to_photoFragment, bundle)
             }
-
 
         })
         binding.listPost.adapter = adapter

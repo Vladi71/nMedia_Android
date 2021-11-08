@@ -10,9 +10,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import ru.netology.AndroidUtils
 import ru.netology.R
 import ru.netology.databinding.FragmentSignInBinding
+import ru.netology.nmedia.auth.AppAuth
 import ru.netology.viewModel.AuthViewModel
 import ru.netology.viewModel.PostViewModel
 
@@ -34,7 +34,6 @@ class SignInFragment : Fragment() {
     ): View? {
         val binding = FragmentSignInBinding.inflate(inflater, container, false)
 
-
         binding.backToThePostMb.setOnClickListener {
 
             with(binding.backToThePostMb) {
@@ -45,7 +44,7 @@ class SignInFragment : Fragment() {
                 findNavController().navigate(R.id.action_signInFragment_to_feedFragment)
             }
         }
-        binding.singUpTV.setOnClickListener{
+        binding.singUpTV.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
@@ -60,16 +59,27 @@ class SignInFragment : Fragment() {
                 toast.show()
                 return@setOnClickListener
             } else {
-                authViewModel.updateUserAuth(
+                authViewModel.updateSingIn(
                     binding.loginEt.text.toString(),
                     binding.passwordEt.text.toString()
                 )
+                authViewModel.user.observe(viewLifecycleOwner, { state ->
+                    if (state.error) {
+                        val toast = Toast.makeText(
+                            requireContext(),
+                            getString(R.string.EnterTheLogAndPass),
+                            Toast.LENGTH_SHORT
+                        )
+                        toast.setGravity(Gravity.CENTER, 0, 0)
+                        toast.show()
 
-                findNavController().navigateUp()
+                    } else {
+                        findNavController().navigate(R.id.action_signInFragment_to_feedFragment)
+                    }
+                })
             }
         }
         return binding.root
     }
-
 }
 
