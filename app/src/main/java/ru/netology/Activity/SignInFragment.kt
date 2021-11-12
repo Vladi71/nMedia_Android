@@ -33,7 +33,7 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSignInBinding.inflate(inflater, container, false)
-
+        var isNavigating = false
         binding.backToThePostMb.setOnClickListener {
 
             with(binding.backToThePostMb) {
@@ -67,13 +67,14 @@ class SignInFragment : Fragment() {
                     if (state.error) {
                         val toast = Toast.makeText(
                             requireContext(),
-                            getString(R.string.EnterTheLogAndPass),
+                            getString(R.string.invalidTheLogAndPass),
                             Toast.LENGTH_SHORT
                         )
                         toast.setGravity(Gravity.CENTER, 0, 0)
                         toast.show()
-
-                    } else {
+                        return@observe
+                    } else if (!isNavigating) {
+                        isNavigating = true
                         findNavController().navigate(R.id.action_signInFragment_to_feedFragment)
                     }
                 })
