@@ -45,4 +45,5 @@
     <string name="fillInAllTheFields">Заполните все поля!</string>
     <string name="passwordDoesnMatch">Пароль не совпадает!</string>
     <string name="invalidTheLogAndPass">Не верный логин или пароль!</string>
+    <string name="notification_new_post">У Вас новый пост!</string>
 </resources>

@@ -2931,6 +2931,7 @@ int string name 0x7f10009c
 int string nav_app_bar_navigate_up_description 0x7f10009d
 int string nav_app_bar_open_drawer_description 0x7f10009e
 int string nmedia 0x7f10009f
+int string notification_new_post 0x7f1000cb
 int string notification_user_liked 0x7f1000a0
 int string notification_user_post 0x7f1000a1
 int string numberShare 0x7f1000a2
