@@ -12,11 +12,12 @@ import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.R
 import ru.netology.databinding.ActivityAppBinding
 import ru.netology.nmedia.auth.AppAuth
 import ru.netology.viewModel.AuthViewModel
-
+@AndroidEntryPoint
 class AppActivity : AppCompatActivity() {
     private val viewModel: AuthViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {

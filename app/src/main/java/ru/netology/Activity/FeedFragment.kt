@@ -3,15 +3,13 @@ package ru.netology.Activity
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.R
 import ru.netology.adapter.OnInteractionListener
 import ru.netology.adapter.PostAdapter
@@ -20,7 +18,9 @@ import ru.netology.dto.Post
 import ru.netology.nmedia.auth.AppAuth
 import ru.netology.viewModel.AuthViewModel
 import ru.netology.viewModel.PostViewModel
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FeedFragment : Fragment() {
 
 
@@ -29,6 +29,8 @@ class FeedFragment : Fragment() {
     )
     private val authViewModel: AuthViewModel by viewModels(ownerProducer = ::requireParentFragment)
 
+    @Inject
+    lateinit var appAuth: AppAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -55,7 +57,7 @@ class FeedFragment : Fragment() {
                 true
             }
             R.id.signout -> {
-                AppAuth.getInstance().removeAuth()
+                appAuth.removeAuth()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -84,7 +86,7 @@ class FeedFragment : Fragment() {
 
 
             override fun onLike(post: Post) {
-                if (!AppAuth.getInstance().authStateFlow.value.token.isNullOrBlank()) {
+                if (!appAuth.authStateFlow.value.token.isNullOrBlank()) {
                     if (!post.likedByMe) {
                         viewModel.likeById(post.id)
                     } else {
@@ -149,12 +151,12 @@ class FeedFragment : Fragment() {
             println(state)
         }
 
-        viewModel.newerCount.observe(viewLifecycleOwner, { state ->
+        viewModel.newerCount.observe(viewLifecycleOwner) { state ->
             when {
                 state != 0 -> binding.newPostsChip.visibility = View.VISIBLE
                 else -> binding.newPostsChip.visibility = View.GONE
             }
-        })
+        }
 
         binding.newPostsChip.setOnClickListener {
             viewModel.run {
@@ -166,7 +168,7 @@ class FeedFragment : Fragment() {
         }
 
         binding.addPostView.setOnClickListener {
-            if (!AppAuth.getInstance().authStateFlow.value.token.isNullOrBlank()) {
+            if (!appAuth.authStateFlow.value.token.isNullOrBlank()) {
                 findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
             } else {
                 findNavController().navigate(R.id.action_feedFragment_to_signInFragment)

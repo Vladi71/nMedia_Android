@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -14,9 +15,12 @@ import ru.netology.nmedia.auth.AuthState
 import ru.netology.nmedia.viewmodel.UserModel
 import ru.netology.repository.UserRepository
 import ru.netology.repository.UserRepositoryImpl
+import javax.inject.Inject
 
-
-class AuthViewModel : ViewModel() {
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val appAuth: AppAuth
+) : ViewModel() {
 
     private val _user = MutableSharedFlow<UserModel>()
     val user: LiveData<UserModel>
@@ -24,12 +28,12 @@ class AuthViewModel : ViewModel() {
 
     private val repository: UserRepository = UserRepositoryImpl()
 
-    val data: LiveData<AuthState> = AppAuth.getInstance()
+    val data: LiveData<AuthState> = appAuth
         .authStateFlow
         .asLiveData(Dispatchers.Default)
 
     val authenticated: Boolean
-        get() = AppAuth.getInstance().authStateFlow.value.id != 0L
+        get() = appAuth.authStateFlow.value.id != 0L
 
     fun updateSingIn(login: String, pass: String) = viewModelScope.launch {
         try {

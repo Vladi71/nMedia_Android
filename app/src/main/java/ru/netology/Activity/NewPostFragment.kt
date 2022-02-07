@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.AndroidUtils
 import ru.netology.R
 import ru.netology.StringArg
@@ -21,6 +22,7 @@ import ru.netology.databinding.FragmentNewPostBinding
 import ru.netology.viewModel.PostViewModel
 import java.io.File
 
+@AndroidEntryPoint
 class NewPostFragment : Fragment() {
     private val photoRequestCode = 1
     private val cameraRequestCode = 2

@@ -3,6 +3,7 @@ package ru.netology.viewModel
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -10,6 +11,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ru.netology.SingleLiveEvent
+import ru.netology.api.ApiService
 import ru.netology.dto.MediaUpload
 import ru.netology.dto.Post
 import ru.netology.model.FeedModel
@@ -20,6 +22,7 @@ import ru.netology.nmedia.db.AppDb
 import ru.netology.repository.PostRepository
 import ru.netology.repository.PostRepositoryImpl
 import java.io.File
+import javax.inject.Inject
 
 
 private val empty = Post(
@@ -34,12 +37,14 @@ private val empty = Post(
 )
 private val noPhoto = PhotoModel()
 
-class PostViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class PostViewModel @Inject constructor(
+    private val repository: PostRepository,
+    appAuth: AppAuth
+) : ViewModel() {
 
-    private val repository: PostRepository =
-        PostRepositoryImpl(AppDb.getInstance(context = application).postDao())
 
-    val data: LiveData<FeedModel> = AppAuth.getInstance()
+    val data: LiveData<FeedModel> = appAuth
         .authStateFlow
         .flatMapLatest { (myId, _) ->
             repository.data

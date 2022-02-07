@@ -1,22 +1,28 @@
 package ru.netology.repository
 
-import ru.netology.api.PostsApi
+
+import ru.netology.api.ApiService
 import ru.netology.dto.AuthUser
 import ru.netology.error.ApiError
 import ru.netology.error.NetworkError
 import ru.netology.error.UnknownError
 import ru.netology.nmedia.auth.AppAuth
 import java.io.IOException
+import javax.inject.Inject
 
-class UserRepositoryImpl() : UserRepository {
+class UserRepositoryImpl @Inject constructor() : UserRepository {
+    @Inject
+    lateinit var appAuth: AppAuth
 
+    @Inject
+    lateinit var postApi: ApiService
     private fun setAuth(id: Long, token: String) {
-        AppAuth.getInstance().setAuth(id, token)
+        appAuth.setAuth(id, token)
     }
 
     override suspend fun loginUser(login: String, pass: String): AuthUser {
         try {
-            val response = PostsApi.service.updateUser(login, pass)
+            val response = postApi.updateUser(login, pass)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
@@ -32,7 +38,7 @@ class UserRepositoryImpl() : UserRepository {
 
     override suspend fun regUser(login: String, pass: String, name: String): AuthUser {
         try {
-            val response = PostsApi.service.registerUser(login, pass, name)
+            val response = postApi.registerUser(login, pass, name)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }

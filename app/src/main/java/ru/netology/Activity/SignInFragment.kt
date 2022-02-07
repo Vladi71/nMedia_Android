@@ -10,15 +10,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.R
 import ru.netology.databinding.FragmentSignInBinding
 import ru.netology.nmedia.auth.AppAuth
 import ru.netology.viewModel.AuthViewModel
 import ru.netology.viewModel.PostViewModel
 
+@AndroidEntryPoint
 class SignInFragment : Fragment() {
-
-
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
@@ -63,7 +63,7 @@ class SignInFragment : Fragment() {
                     binding.loginEt.text.toString(),
                     binding.passwordEt.text.toString()
                 )
-                authViewModel.user.observe(viewLifecycleOwner, { state ->
+                authViewModel.user.observe(viewLifecycleOwner) { state ->
                     if (state.error) {
                         val toast = Toast.makeText(
                             requireContext(),
@@ -77,7 +77,7 @@ class SignInFragment : Fragment() {
                         isNavigating = true
                         findNavController().navigate(R.id.action_signInFragment_to_feedFragment)
                     }
-                })
+                }
             }
         }
         return binding.root

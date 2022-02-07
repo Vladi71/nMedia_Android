@@ -10,10 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.R
 import ru.netology.StringArg
 import ru.netology.databinding.FragmentPhotoBinding
 
+@AndroidEntryPoint
 class PhotoFragment : Fragment() {
 
     private var fragmentBinding: FragmentPhotoBinding? = null

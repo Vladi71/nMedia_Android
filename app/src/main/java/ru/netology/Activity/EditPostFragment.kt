@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.AndroidUtils
 import ru.netology.R
 import ru.netology.databinding.FragmentEditPostBinding
 import ru.netology.viewModel.PostViewModel
 
+@AndroidEntryPoint
 class EditPostFragment : Fragment() {
 
     private val viewModel: PostViewModel by viewModels(
