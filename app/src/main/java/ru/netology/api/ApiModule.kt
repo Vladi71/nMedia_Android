@@ -1,6 +1,8 @@
 package ru.netology.api
 
 import android.content.SharedPreferences
+import com.google.android.gms.common.GoogleApiAvailability
+import com.google.firebase.iid.FirebaseInstanceId
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -66,4 +68,14 @@ object ApiModule {
     fun provideApiService(retrofit: Retrofit): ApiService =
         retrofit.create()
 
+
+    @Singleton
+    @Provides
+    fun provideGoogleApiAvailability(): GoogleApiAvailability =
+        GoogleApiAvailability.getInstance()
+
+    @Singleton
+    @Provides
+    fun provideFirebaseInstanceId(): FirebaseInstanceId =
+        FirebaseInstanceId.getInstance()
 }

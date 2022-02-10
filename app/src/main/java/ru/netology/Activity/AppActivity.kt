@@ -17,8 +17,16 @@ import ru.netology.R
 import ru.netology.databinding.ActivityAppBinding
 import ru.netology.nmedia.auth.AppAuth
 import ru.netology.viewModel.AuthViewModel
+import javax.inject.Inject
+
 @AndroidEntryPoint
 class AppActivity : AppCompatActivity() {
+    @Inject
+    lateinit var googleApiAvailability: GoogleApiAvailability
+
+    @Inject
+    lateinit var firebaseInstanceId: FirebaseInstanceId
+
     private val viewModel: AuthViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +59,7 @@ class AppActivity : AppCompatActivity() {
 
 
     private fun checkGoogleApiAvailability() {
-        with(GoogleApiAvailability.getInstance()) {
+        with(googleApiAvailability) {
             val code = isGooglePlayServicesAvailable(this@AppActivity)
             if (code == ConnectionResult.SUCCESS) {
                 return@with
@@ -64,7 +72,7 @@ class AppActivity : AppCompatActivity() {
                 .show()
         }
 
-        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+        firebaseInstanceId.instanceId.addOnSuccessListener {
             println(it.token)
         }
     }
