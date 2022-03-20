@@ -9,9 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import ru.netology.R
+import ru.netology.adapter.OnInteractionListener
+import ru.netology.adapter.PostAdapter
 import ru.netology.databinding.FragmentSignInBinding
 import ru.netology.nmedia.auth.AppAuth
 import ru.netology.viewModel.AuthViewModel
@@ -49,6 +54,7 @@ class SignInFragment : Fragment() {
         }
 
         binding.enterBt.setOnClickListener {
+
             if (TextUtils.isEmpty(binding.loginEt.text) || TextUtils.isEmpty(binding.passwordEt.text)) {
                 val toast = Toast.makeText(
                     requireContext(),
@@ -80,6 +86,17 @@ class SignInFragment : Fragment() {
                 }
             }
         }
+        val adapter = PostAdapter(object : OnInteractionListener {
+        })
+        lifecycleScope.launchWhenCreated {
+            adapter.loadStateFlow.collectLatest { state ->
+                binding.swipeRefresh.isRefreshing =
+                    state.refresh is LoadState.Loading ||
+                            state.prepend is LoadState.Loading ||
+                            state.append is LoadState.Loading
+            }
+        }
+        binding.swipeRefresh.setOnRefreshListener(adapter::refresh)
         return binding.root
     }
 }
