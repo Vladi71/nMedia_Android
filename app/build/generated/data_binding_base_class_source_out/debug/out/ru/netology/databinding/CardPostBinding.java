@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -93,55 +94,55 @@ public final class CardPostBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.authorTv;
-      TextView authorTv = rootView.findViewById(id);
+      TextView authorTv = ViewBindings.findChildViewById(rootView, id);
       if (authorTv == null) {
         break missingId;
       }
 
       id = R.id.avatarV;
-      ImageView avatarV = rootView.findViewById(id);
+      ImageView avatarV = ViewBindings.findChildViewById(rootView, id);
       if (avatarV == null) {
         break missingId;
       }
 
       id = R.id.contentTv;
-      TextView contentTv = rootView.findViewById(id);
+      TextView contentTv = ViewBindings.findChildViewById(rootView, id);
       if (contentTv == null) {
         break missingId;
       }
 
       id = R.id.imageIV;
-      ImageView imageIV = rootView.findViewById(id);
+      ImageView imageIV = ViewBindings.findChildViewById(rootView, id);
       if (imageIV == null) {
         break missingId;
       }
 
       id = R.id.likeIb;
-      MaterialButton likeIb = rootView.findViewById(id);
+      MaterialButton likeIb = ViewBindings.findChildViewById(rootView, id);
       if (likeIb == null) {
         break missingId;
       }
 
       id = R.id.menuIb;
-      MaterialButton menuIb = rootView.findViewById(id);
+      MaterialButton menuIb = ViewBindings.findChildViewById(rootView, id);
       if (menuIb == null) {
         break missingId;
       }
 
       id = R.id.publishedBarrier;
-      Barrier publishedBarrier = rootView.findViewById(id);
+      Barrier publishedBarrier = ViewBindings.findChildViewById(rootView, id);
       if (publishedBarrier == null) {
         break missingId;
       }
 
       id = R.id.publishedBarrier2;
-      Barrier publishedBarrier2 = rootView.findViewById(id);
+      Barrier publishedBarrier2 = ViewBindings.findChildViewById(rootView, id);
       if (publishedBarrier2 == null) {
         break missingId;
       }
 
       id = R.id.publishedTv;
-      TextView publishedTv = rootView.findViewById(id);
+      TextView publishedTv = ViewBindings.findChildViewById(rootView, id);
       if (publishedTv == null) {
         break missingId;
       }

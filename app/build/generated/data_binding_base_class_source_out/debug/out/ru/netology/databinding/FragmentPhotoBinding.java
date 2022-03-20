@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -66,19 +67,19 @@ public final class FragmentPhotoBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.backToThePostMb;
-      MaterialButton backToThePostMb = rootView.findViewById(id);
+      MaterialButton backToThePostMb = ViewBindings.findChildViewById(rootView, id);
       if (backToThePostMb == null) {
         break missingId;
       }
 
       id = R.id.photoV;
-      ImageView photoV = rootView.findViewById(id);
+      ImageView photoV = ViewBindings.findChildViewById(rootView, id);
       if (photoV == null) {
         break missingId;
       }
 
       id = R.id.textView;
-      TextView textView = rootView.findViewById(id);
+      TextView textView = ViewBindings.findChildViewById(rootView, id);
       if (textView == null) {
         break missingId;
       }

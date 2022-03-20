@@ -16,7 +16,7 @@ import ru.netology.nmedia.auth.AppAuth
 import javax.inject.Inject
 
 
-interface ApiService{
+interface ApiService {
     @POST("users/push-tokens")
     suspend fun save(@Body pushToken: PushToken): Response<Unit>
 
@@ -25,6 +25,15 @@ interface ApiService{
 
     @GET("posts/{id}/newer")
     suspend fun getNewer(@Path("id") id: Long): Response<List<Post>>
+
+    @GET("posts/{id}/before")
+    suspend fun getBefore(
+        @Path("id") id: Long,
+        @Query("count") count: Int
+    ): Response<List<Post>>
+
+    @GET("posts/latest")
+    suspend fun getLatest(@Query("count") count: Int): Response<List<Post>>
 
     @GET("posts/{id}")
     suspend fun getById(@Path("id") id: Long): Response<Post>

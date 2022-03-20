@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -84,43 +85,43 @@ public final class FragmentEditPostBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.avatarV;
-      ImageView avatarV = rootView.findViewById(id);
+      ImageView avatarV = ViewBindings.findChildViewById(rootView, id);
       if (avatarV == null) {
         break missingId;
       }
 
       id = R.id.cancelIv;
-      ImageView cancelIv = rootView.findViewById(id);
+      ImageView cancelIv = ViewBindings.findChildViewById(rootView, id);
       if (cancelIv == null) {
         break missingId;
       }
 
       id = R.id.cancelTextTv;
-      TextView cancelTextTv = rootView.findViewById(id);
+      TextView cancelTextTv = ViewBindings.findChildViewById(rootView, id);
       if (cancelTextTv == null) {
         break missingId;
       }
 
       id = R.id.contentEt;
-      EditText contentEt = rootView.findViewById(id);
+      EditText contentEt = ViewBindings.findChildViewById(rootView, id);
       if (contentEt == null) {
         break missingId;
       }
 
       id = R.id.editedTextTv;
-      TextView editedTextTv = rootView.findViewById(id);
+      TextView editedTextTv = ViewBindings.findChildViewById(rootView, id);
       if (editedTextTv == null) {
         break missingId;
       }
 
       id = R.id.publishedBarrier;
-      Barrier publishedBarrier = rootView.findViewById(id);
+      Barrier publishedBarrier = ViewBindings.findChildViewById(rootView, id);
       if (publishedBarrier == null) {
         break missingId;
       }
 
       id = R.id.saveIv;
-      ImageView saveIv = rootView.findViewById(id);
+      ImageView saveIv = ViewBindings.findChildViewById(rootView, id);
       if (saveIv == null) {
         break missingId;
       }

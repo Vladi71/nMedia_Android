@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.lang.NullPointerException;
@@ -97,55 +98,55 @@ public final class FragmentFeedBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.addPostView;
-      FloatingActionButton addPostView = rootView.findViewById(id);
+      FloatingActionButton addPostView = ViewBindings.findChildViewById(rootView, id);
       if (addPostView == null) {
         break missingId;
       }
 
       id = R.id.emptyText;
-      TextView emptyText = rootView.findViewById(id);
+      TextView emptyText = ViewBindings.findChildViewById(rootView, id);
       if (emptyText == null) {
         break missingId;
       }
 
       id = R.id.errorGroup;
-      Group errorGroup = rootView.findViewById(id);
+      Group errorGroup = ViewBindings.findChildViewById(rootView, id);
       if (errorGroup == null) {
         break missingId;
       }
 
       id = R.id.listPost;
-      RecyclerView listPost = rootView.findViewById(id);
+      RecyclerView listPost = ViewBindings.findChildViewById(rootView, id);
       if (listPost == null) {
         break missingId;
       }
 
       id = R.id.newPostsChip;
-      Chip newPostsChip = rootView.findViewById(id);
+      Chip newPostsChip = ViewBindings.findChildViewById(rootView, id);
       if (newPostsChip == null) {
         break missingId;
       }
 
       id = R.id.progress;
-      ProgressBar progress = rootView.findViewById(id);
+      ProgressBar progress = ViewBindings.findChildViewById(rootView, id);
       if (progress == null) {
         break missingId;
       }
 
       id = R.id.retryButton;
-      Button retryButton = rootView.findViewById(id);
+      Button retryButton = ViewBindings.findChildViewById(rootView, id);
       if (retryButton == null) {
         break missingId;
       }
 
       id = R.id.retryTitle;
-      TextView retryTitle = rootView.findViewById(id);
+      TextView retryTitle = ViewBindings.findChildViewById(rootView, id);
       if (retryTitle == null) {
         break missingId;
       }
 
       id = R.id.swipeRefresh;
-      SwipeRefreshLayout swipeRefresh = rootView.findViewById(id);
+      SwipeRefreshLayout swipeRefresh = ViewBindings.findChildViewById(rootView, id);
       if (swipeRefresh == null) {
         break missingId;
       }

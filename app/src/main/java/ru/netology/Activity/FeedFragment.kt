@@ -6,10 +6,13 @@ import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import ru.netology.R
 import ru.netology.adapter.OnInteractionListener
 import ru.netology.adapter.PostAdapter
@@ -72,18 +75,7 @@ class FeedFragment : Fragment() {
 
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
 
-
-        binding.swipeRefresh.setOnRefreshListener {
-            viewModel.refreshPosts()
-            binding.swipeRefresh.setColorSchemeResources(
-                android.R.color.holo_red_dark,
-                android.R.color.holo_blue_dark
-            )
-            binding.newPostsChip.visibility = View.GONE
-        }
-
         val adapter = PostAdapter(object : OnInteractionListener {
-
 
             override fun onLike(post: Post) {
                 if (!appAuth.authStateFlow.value.token.isNullOrBlank()) {
@@ -134,10 +126,13 @@ class FeedFragment : Fragment() {
             binding.errorGroup.isVisible = state.error
         }
 
-        viewModel.data.observe(viewLifecycleOwner) {
-            adapter.submitList(it.posts)
-            binding.emptyText.isVisible = it.empty
+        lifecycleScope.launchWhenCreated {
+            viewModel.data.collectLatest { state ->
+                adapter.submitData(state)
+
+            }
         }
+
 
         binding.retryButton.setOnClickListener {
             viewModel.loadPosts()
@@ -147,16 +142,7 @@ class FeedFragment : Fragment() {
                 return@observe
             }
         }
-        viewModel.newerCount.observe(viewLifecycleOwner) { state ->
-            println(state)
-        }
 
-        viewModel.newerCount.observe(viewLifecycleOwner) { state ->
-            when {
-                state != 0 -> binding.newPostsChip.visibility = View.VISIBLE
-                else -> binding.newPostsChip.visibility = View.GONE
-            }
-        }
 
         binding.newPostsChip.setOnClickListener {
             viewModel.run {
@@ -174,6 +160,17 @@ class FeedFragment : Fragment() {
                 findNavController().navigate(R.id.action_feedFragment_to_signInFragment)
             }
         }
+
+        lifecycleScope.launchWhenCreated {
+            adapter.loadStateFlow.collectLatest { state ->
+                binding.swipeRefresh.isRefreshing =
+                    state.refresh is LoadState.Loading ||
+                            state.prepend is LoadState.Loading ||
+                            state.append is LoadState.Loading
+            }
+        }
+
+        binding.swipeRefresh.setOnRefreshListener(adapter::refresh)
 
         return binding.root
     }

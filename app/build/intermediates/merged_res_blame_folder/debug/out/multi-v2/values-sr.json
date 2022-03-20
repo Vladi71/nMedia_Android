@@ -4,24 +4,7 @@
             "outputFile": "C:\\Users\\ronrs\\AndroidStudioProjects\\nMedia_Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sr\\values-sr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\630c77100ee9109989cead3a0667996b\\jetified-play-services-basement-17.6.0\\res\\values-sr\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "188",
-                        "endOffsets": "435"
-                    },
-                    "to": {
-                        "startLines": "46",
-                        "startColumns": "4",
-                        "startOffsets": "4591",
-                        "endColumns": "188",
-                        "endOffsets": "4775"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\d9af6baa6f61347158d4fd29dc10ef4d\\appcompat-1.3.1\\res\\values-sr\\values-sr.xml",
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-3\\330467d1e9ee1537bc0fdca28432e00e\\transformed\\appcompat-1.3.1\\res\\values-sr\\values-sr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\53bfc2a44e4d1c463583d2acedae6339\\material-1.4.0\\res\\values-sr\\values-sr.xml",
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-3\\ddccedb91e0acea0427a98f6b189cc3f\\transformed\\jetified-play-services-basement-17.6.0\\res\\values-sr\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "188",
+                        "endOffsets": "435"
+                    },
+                    "to": {
+                        "startLines": "46",
+                        "startColumns": "4",
+                        "startOffsets": "4591",
+                        "endColumns": "188",
+                        "endOffsets": "4775"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-3\\939cb40290bad47d0287811e6146c1e5\\transformed\\material-1.4.0\\res\\values-sr\\values-sr.xml",
                     "from": {
                         "startLines": "2,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -57,24 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\cfe8f91b1c8a9c078181f254f4d872cb\\core-1.6.0\\res\\values-sr\\values-sr.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "110",
-                        "startColumns": "4",
-                        "startOffsets": "10474",
-                        "endColumns": "100",
-                        "endOffsets": "10570"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\06e0d63f235129344ee9761423df11e7\\jetified-firebase-messaging-21.0.1\\res\\values-sr\\values.xml",
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-3\\edd75e594053ef1bf0e035c3d522e63b\\transformed\\jetified-firebase-messaging-21.0.1\\res\\values-sr\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -91,24 +74,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\ea77479d22bbb021fce85e7378e79bfa\\navigation-ui-2.3.5\\res\\values-sr\\values-sr.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,162",
-                        "endColumns": "106,122",
-                        "endOffsets": "157,280"
-                    },
-                    "to": {
-                        "startLines": "106,107",
-                        "startColumns": "4,4",
-                        "startOffsets": "10077,10184",
-                        "endColumns": "106,122",
-                        "endOffsets": "10179,10302"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-2\\files-2.1\\5e26fd0e16f8cb5601572412a2bd0de4\\jetified-play-services-base-17.6.0\\res\\values-sr\\values.xml",
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-3\\f6368926122316e2d255c7e85669b4cd\\transformed\\jetified-play-services-base-17.6.0\\res\\values-sr\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -122,6 +88,40 @@
                         "startOffsets": "3440,3548,3736,3864,3976,4189,4318,4460,4780,4988,5097,5288,5417,5625,5797,5895,5990",
                         "endColumns": "107,187,127,111,212,128,141,130,207,108,190,128,207,171,97,94,108",
                         "endOffsets": "3543,3731,3859,3971,4184,4313,4455,4586,4983,5092,5283,5412,5620,5792,5890,5985,6094"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-3\\cf73dd20ca0f9038ebeacde28f4f4a1f\\transformed\\core-1.6.0\\res\\values-sr\\values-sr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "110",
+                        "startColumns": "4",
+                        "startOffsets": "10474",
+                        "endColumns": "100",
+                        "endOffsets": "10570"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ronrs\\.gradle\\caches\\transforms-3\\1618b67175ed041f3efdf49180d62adf\\transformed\\navigation-ui-2.3.5\\res\\values-sr\\values-sr.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,162",
+                        "endColumns": "106,122",
+                        "endOffsets": "157,280"
+                    },
+                    "to": {
+                        "startLines": "106,107",
+                        "startColumns": "4,4",
+                        "startOffsets": "10077,10184",
+                        "endColumns": "106,122",
+                        "endOffsets": "10179,10302"
                     }
                 }
             ]

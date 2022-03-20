@@ -1,5 +1,6 @@
 package ru.netology.repository
 
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import ru.netology.dao.PostDao
 import ru.netology.dto.Media
@@ -9,7 +10,7 @@ import ru.netology.entity.PostEntity
 
 
 interface PostRepository {
-    val data: Flow<List<Post>>
+    val data: Flow<PagingData<Post>>
     suspend fun likeById(id: Long)
     suspend fun unLikeById(id: Long)
     suspend fun removeById(id: Long)

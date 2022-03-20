@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -113,79 +114,79 @@ public final class FragmentNewPostBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.addIv;
-      ImageView addIv = rootView.findViewById(id);
+      ImageView addIv = ViewBindings.findChildViewById(rootView, id);
       if (addIv == null) {
         break missingId;
       }
 
       id = R.id.authorTv;
-      TextView authorTv = rootView.findViewById(id);
+      TextView authorTv = ViewBindings.findChildViewById(rootView, id);
       if (authorTv == null) {
         break missingId;
       }
 
       id = R.id.avatarV;
-      ImageView avatarV = rootView.findViewById(id);
+      ImageView avatarV = ViewBindings.findChildViewById(rootView, id);
       if (avatarV == null) {
         break missingId;
       }
 
       id = R.id.buttonPanel;
-      LinearLayout buttonPanel = rootView.findViewById(id);
+      LinearLayout buttonPanel = ViewBindings.findChildViewById(rootView, id);
       if (buttonPanel == null) {
         break missingId;
       }
 
       id = R.id.cancelIv;
-      ImageView cancelIv = rootView.findViewById(id);
+      ImageView cancelIv = ViewBindings.findChildViewById(rootView, id);
       if (cancelIv == null) {
         break missingId;
       }
 
       id = R.id.cancelPhotoIm;
-      ImageView cancelPhotoIm = rootView.findViewById(id);
+      ImageView cancelPhotoIm = ViewBindings.findChildViewById(rootView, id);
       if (cancelPhotoIm == null) {
         break missingId;
       }
 
       id = R.id.contentEt;
-      EditText contentEt = rootView.findViewById(id);
+      EditText contentEt = ViewBindings.findChildViewById(rootView, id);
       if (contentEt == null) {
         break missingId;
       }
 
       id = R.id.photoContainer;
-      Group photoContainer = rootView.findViewById(id);
+      Group photoContainer = ViewBindings.findChildViewById(rootView, id);
       if (photoContainer == null) {
         break missingId;
       }
 
       id = R.id.photoIv;
-      ImageView photoIv = rootView.findViewById(id);
+      ImageView photoIv = ViewBindings.findChildViewById(rootView, id);
       if (photoIv == null) {
         break missingId;
       }
 
       id = R.id.pickPhoto;
-      MaterialButton pickPhoto = rootView.findViewById(id);
+      MaterialButton pickPhoto = ViewBindings.findChildViewById(rootView, id);
       if (pickPhoto == null) {
         break missingId;
       }
 
       id = R.id.publishedBarrier;
-      Barrier publishedBarrier = rootView.findViewById(id);
+      Barrier publishedBarrier = ViewBindings.findChildViewById(rootView, id);
       if (publishedBarrier == null) {
         break missingId;
       }
 
       id = R.id.saveIv;
-      ImageView saveIv = rootView.findViewById(id);
+      ImageView saveIv = ViewBindings.findChildViewById(rootView, id);
       if (saveIv == null) {
         break missingId;
       }
 
       id = R.id.takePhoto;
-      MaterialButton takePhoto = rootView.findViewById(id);
+      MaterialButton takePhoto = ViewBindings.findChildViewById(rootView, id);
       if (takePhoto == null) {
         break missingId;
       }
