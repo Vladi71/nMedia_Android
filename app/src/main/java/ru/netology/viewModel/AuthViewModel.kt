@@ -19,14 +19,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val appAuth: AppAuth
+    private val appAuth: AppAuth,
+    private val repository: UserRepository
 ) : ViewModel() {
 
     private val _user = MutableSharedFlow<UserModel>()
     val user: LiveData<UserModel>
         get() = _user.asLiveData()
-
-    private val repository: UserRepository = UserRepositoryImpl()
 
     val data: LiveData<AuthState> = appAuth
         .authStateFlow

@@ -42,7 +42,7 @@ class FeedFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main, menu)
 
-        menu?.let {
+        menu.let {
             it.setGroupVisible(R.id.unauthenticated, !authViewModel.authenticated)
             it.setGroupVisible(R.id.authenticated, authViewModel.authenticated)
         }
@@ -54,14 +54,17 @@ class FeedFragment : Fragment() {
             R.id.signin -> {
                 findNavController().navigate(R.id.action_feedFragment_to_signInFragment)
                 true
+
             }
             R.id.signup -> {
                 findNavController().navigate(R.id.action_feedFragment_to_signUpFragment)
                 true
+
             }
             R.id.signout -> {
                 appAuth.removeAuth()
                 true
+
             }
             else -> super.onOptionsItemSelected(item)
         }

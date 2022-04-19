@@ -86,17 +86,6 @@ class SignUpFragment : Fragment() {
                 findNavController().navigate(R.id.action_signUpFragment_to_feedFragment)
             }
         }
-        val adapter = PostAdapter(object : OnInteractionListener {
-        })
-        lifecycleScope.launchWhenCreated {
-            adapter.loadStateFlow.collectLatest { state ->
-                binding.swipeRefresh.isRefreshing =
-                    state.refresh is LoadState.Loading ||
-                            state.prepend is LoadState.Loading ||
-                            state.append is LoadState.Loading
-            }
-        }
-        binding.swipeRefresh.setOnRefreshListener(adapter::refresh)
         return binding.root
     }
 

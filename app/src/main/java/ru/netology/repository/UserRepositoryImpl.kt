@@ -10,12 +10,10 @@ import ru.netology.nmedia.auth.AppAuth
 import java.io.IOException
 import javax.inject.Inject
 
-class UserRepositoryImpl @Inject constructor() : UserRepository {
-    @Inject
-    lateinit var appAuth: AppAuth
-
-    @Inject
-    lateinit var postApi: ApiService
+class UserRepositoryImpl @Inject constructor(
+    private val appAuth: AppAuth,
+    private val postApi: ApiService,
+) : UserRepository {
     private fun setAuth(id: Long, token: String) {
         appAuth.setAuth(id, token)
     }
