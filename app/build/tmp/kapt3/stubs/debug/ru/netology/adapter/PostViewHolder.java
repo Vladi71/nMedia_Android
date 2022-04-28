@@ -7,13 +7,13 @@ public final class PostViewHolder extends androidx.recyclerview.widget.RecyclerV
     private final ru.netology.databinding.CardPostBinding binding = null;
     private final ru.netology.adapter.OnInteractionListener OnInteractionListener = null;
     
-    public PostViewHolder(@org.jetbrains.annotations.NotNull()
-    ru.netology.databinding.CardPostBinding binding, @org.jetbrains.annotations.NotNull()
+    public PostViewHolder(@org.jetbrains.annotations.NotNull
+    ru.netology.databinding.CardPostBinding binding, @org.jetbrains.annotations.NotNull
     ru.netology.adapter.OnInteractionListener OnInteractionListener) {
         super(null);
     }
     
-    public final void bind(@org.jetbrains.annotations.NotNull()
+    public final void bind(@org.jetbrains.annotations.NotNull
     ru.netology.dto.Post post) {
     }
 }

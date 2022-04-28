@@ -6,7 +6,7 @@ import java.lang.System;
 public final class ApiError extends ru.netology.error.AppError {
     private final int status = 0;
     
-    public ApiError(int status, @org.jetbrains.annotations.NotNull()
+    public ApiError(int status, @org.jetbrains.annotations.NotNull
     java.lang.String code) {
         super(null);
     }

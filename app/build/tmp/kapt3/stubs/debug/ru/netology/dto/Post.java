@@ -6,50 +6,50 @@ import java.lang.System;
 public final class Post {
     private final long id = 0L;
     private final long authorId = 0L;
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     private final java.lang.String author = null;
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     private final java.lang.String authorAvatar = null;
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     private final java.lang.String content = null;
     private final long published = 0L;
     private final boolean likedByMe = false;
     private final int likes = 0;
     private final boolean showOrNot = false;
-    @org.jetbrains.annotations.Nullable()
+    @org.jetbrains.annotations.Nullable
     private ru.netology.dto.Attachment attachment;
     private final boolean ownedByMe = false;
     
-    @org.jetbrains.annotations.NotNull()
-    public final ru.netology.dto.Post copy(long id, long authorId, @org.jetbrains.annotations.NotNull()
-    java.lang.String author, @org.jetbrains.annotations.NotNull()
-    java.lang.String authorAvatar, @org.jetbrains.annotations.NotNull()
-    java.lang.String content, long published, boolean likedByMe, int likes, boolean showOrNot, @org.jetbrains.annotations.Nullable()
+    @org.jetbrains.annotations.NotNull
+    public final ru.netology.dto.Post copy(long id, long authorId, @org.jetbrains.annotations.NotNull
+    java.lang.String author, @org.jetbrains.annotations.NotNull
+    java.lang.String authorAvatar, @org.jetbrains.annotations.NotNull
+    java.lang.String content, long published, boolean likedByMe, int likes, boolean showOrNot, @org.jetbrains.annotations.Nullable
     ru.netology.dto.Attachment attachment, boolean ownedByMe) {
         return null;
     }
     
-    @java.lang.Override()
-    public boolean equals(@org.jetbrains.annotations.Nullable()
+    @java.lang.Override
+    public boolean equals(@org.jetbrains.annotations.Nullable
     java.lang.Object other) {
         return false;
     }
     
-    @java.lang.Override()
+    @java.lang.Override
     public int hashCode() {
         return 0;
     }
     
-    @org.jetbrains.annotations.NotNull()
-    @java.lang.Override()
+    @org.jetbrains.annotations.NotNull
+    @java.lang.Override
     public java.lang.String toString() {
         return null;
     }
     
-    public Post(long id, long authorId, @org.jetbrains.annotations.NotNull()
-    java.lang.String author, @org.jetbrains.annotations.NotNull()
-    java.lang.String authorAvatar, @org.jetbrains.annotations.NotNull()
-    java.lang.String content, long published, boolean likedByMe, int likes, boolean showOrNot, @org.jetbrains.annotations.Nullable()
+    public Post(long id, long authorId, @org.jetbrains.annotations.NotNull
+    java.lang.String author, @org.jetbrains.annotations.NotNull
+    java.lang.String authorAvatar, @org.jetbrains.annotations.NotNull
+    java.lang.String content, long published, boolean likedByMe, int likes, boolean showOrNot, @org.jetbrains.annotations.Nullable
     ru.netology.dto.Attachment attachment, boolean ownedByMe) {
         super();
     }
@@ -70,32 +70,32 @@ public final class Post {
         return 0L;
     }
     
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     public final java.lang.String component3() {
         return null;
     }
     
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     public final java.lang.String getAuthor() {
         return null;
     }
     
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     public final java.lang.String component4() {
         return null;
     }
     
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     public final java.lang.String getAuthorAvatar() {
         return null;
     }
     
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     public final java.lang.String component5() {
         return null;
     }
     
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     public final java.lang.String getContent() {
         return null;
     }
@@ -132,17 +132,17 @@ public final class Post {
         return false;
     }
     
-    @org.jetbrains.annotations.Nullable()
+    @org.jetbrains.annotations.Nullable
     public final ru.netology.dto.Attachment component10() {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
+    @org.jetbrains.annotations.Nullable
     public final ru.netology.dto.Attachment getAttachment() {
         return null;
     }
     
-    public final void setAttachment(@org.jetbrains.annotations.Nullable()
+    public final void setAttachment(@org.jetbrains.annotations.Nullable
     ru.netology.dto.Attachment p0) {
     }
     

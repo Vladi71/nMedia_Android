@@ -81,7 +81,7 @@ class SignInFragment : Fragment() {
                         return@observe
                     } else if (!isNavigating) {
                         isNavigating = true
-                        findNavController().navigate(R.id.action_signInFragment_to_feedFragment)
+                        findNavController().navigateUp()
                     }
                 }
             }

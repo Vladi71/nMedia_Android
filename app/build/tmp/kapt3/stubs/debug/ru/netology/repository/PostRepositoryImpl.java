@@ -6,91 +6,91 @@ import java.lang.System;
 public final class PostRepositoryImpl implements ru.netology.repository.PostRepository {
     private final ru.netology.dao.PostDao dao = null;
     private final ru.netology.api.ApiService apiService = null;
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     private final kotlinx.coroutines.flow.Flow<androidx.paging.PagingData<ru.netology.dto.Post>> data = null;
     
-    @javax.inject.Inject()
-    public PostRepositoryImpl(@org.jetbrains.annotations.NotNull()
-    ru.netology.dao.PostDao dao, @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject
+    public PostRepositoryImpl(@org.jetbrains.annotations.NotNull
+    ru.netology.dao.PostDao dao, @org.jetbrains.annotations.NotNull
     ru.netology.api.ApiService apiService) {
         super();
     }
     
-    @org.jetbrains.annotations.NotNull()
-    @java.lang.Override()
+    @org.jetbrains.annotations.NotNull
+    @java.lang.Override
     public kotlinx.coroutines.flow.Flow<androidx.paging.PagingData<ru.netology.dto.Post>> getData() {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object getAll(@org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object getAll(@org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super kotlin.Unit> continuation) {
         return null;
     }
     
-    @org.jetbrains.annotations.NotNull()
-    @java.lang.Override()
+    @org.jetbrains.annotations.NotNull
+    @java.lang.Override
     public kotlinx.coroutines.flow.Flow<java.lang.Integer> getNewerCount(long id) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object markPostToShow(@org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object markPostToShow(@org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super kotlin.Unit> continuation) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object getPostById(long id, @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object getPostById(long id, @org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super ru.netology.dto.Post> continuation) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object save(@org.jetbrains.annotations.NotNull()
-    ru.netology.dto.Post post, @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object save(@org.jetbrains.annotations.NotNull
+    ru.netology.dto.Post post, @org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super kotlin.Unit> continuation) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object removeById(long id, @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object removeById(long id, @org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super kotlin.Unit> continuation) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object likeById(long id, @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object likeById(long id, @org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super kotlin.Unit> continuation) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object unLikeById(long id, @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object unLikeById(long id, @org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super kotlin.Unit> continuation) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object saveWithAttachment(@org.jetbrains.annotations.NotNull()
-    ru.netology.dto.Post post, @org.jetbrains.annotations.NotNull()
-    ru.netology.dto.MediaUpload upload, @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object saveWithAttachment(@org.jetbrains.annotations.NotNull
+    ru.netology.dto.Post post, @org.jetbrains.annotations.NotNull
+    ru.netology.dto.MediaUpload upload, @org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super kotlin.Unit> continuation) {
         return null;
     }
     
-    @org.jetbrains.annotations.Nullable()
-    @java.lang.Override()
-    public java.lang.Object upload(@org.jetbrains.annotations.NotNull()
-    ru.netology.dto.MediaUpload upload, @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.Nullable
+    @java.lang.Override
+    public java.lang.Object upload(@org.jetbrains.annotations.NotNull
+    ru.netology.dto.MediaUpload upload, @org.jetbrains.annotations.NotNull
     kotlin.coroutines.Continuation<? super ru.netology.dto.Media> continuation) {
         return null;
     }

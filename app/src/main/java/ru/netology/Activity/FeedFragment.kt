@@ -46,8 +46,8 @@ class FeedFragment : Fragment() {
             it.setGroupVisible(R.id.unauthenticated, !authViewModel.authenticated)
             it.setGroupVisible(R.id.authenticated, authViewModel.authenticated)
         }
-
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -136,16 +136,21 @@ class FeedFragment : Fragment() {
             }
         }
 
-
         binding.retryButton.setOnClickListener {
             viewModel.loadPosts()
         }
+
         viewModel.edited.observe(viewLifecycleOwner) { post ->
             if (post.id == 0L) {
                 return@observe
             }
         }
 
+        authViewModel.data.observe(viewLifecycleOwner) { authState ->
+            if (authState.token != null || authState.id == 0L) {
+                adapter.refresh()
+            }
+        }
 
         binding.newPostsChip.setOnClickListener {
             viewModel.run {
@@ -189,6 +194,7 @@ class FeedFragment : Fragment() {
         smoothScroller.targetPosition = position
         layoutManager?.startSmoothScroll(smoothScroller)
     }
+
 }
 
 

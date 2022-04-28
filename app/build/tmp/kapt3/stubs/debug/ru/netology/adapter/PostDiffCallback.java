@@ -9,16 +9,16 @@ public final class PostDiffCallback extends androidx.recyclerview.widget.DiffUti
         super();
     }
     
-    @java.lang.Override()
-    public boolean areItemsTheSame(@org.jetbrains.annotations.NotNull()
-    ru.netology.dto.Post oldItem, @org.jetbrains.annotations.NotNull()
+    @java.lang.Override
+    public boolean areItemsTheSame(@org.jetbrains.annotations.NotNull
+    ru.netology.dto.Post oldItem, @org.jetbrains.annotations.NotNull
     ru.netology.dto.Post newItem) {
         return false;
     }
     
-    @java.lang.Override()
-    public boolean areContentsTheSame(@org.jetbrains.annotations.NotNull()
-    ru.netology.dto.Post oldItem, @org.jetbrains.annotations.NotNull()
+    @java.lang.Override
+    public boolean areContentsTheSame(@org.jetbrains.annotations.NotNull
+    ru.netology.dto.Post oldItem, @org.jetbrains.annotations.NotNull
     ru.netology.dto.Post newItem) {
         return false;
     }

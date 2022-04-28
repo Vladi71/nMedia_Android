@@ -10,16 +10,16 @@ public final class SingleLiveEvent<T extends java.lang.Object> extends androidx.
         super(null);
     }
     
-    @androidx.annotation.MainThread()
-    @java.lang.Override()
-    public void observe(@org.jetbrains.annotations.NotNull()
-    androidx.lifecycle.LifecycleOwner owner, @org.jetbrains.annotations.NotNull()
+    @androidx.annotation.MainThread
+    @java.lang.Override
+    public void observe(@org.jetbrains.annotations.NotNull
+    androidx.lifecycle.LifecycleOwner owner, @org.jetbrains.annotations.NotNull
     androidx.lifecycle.Observer<? super T> observer) {
     }
     
-    @androidx.annotation.MainThread()
-    @java.lang.Override()
-    public void setValue(@org.jetbrains.annotations.Nullable()
+    @androidx.annotation.MainThread
+    @java.lang.Override
+    public void setValue(@org.jetbrains.annotations.Nullable
     T t) {
     }
 }

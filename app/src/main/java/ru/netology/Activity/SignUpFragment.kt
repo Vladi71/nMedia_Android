@@ -83,7 +83,7 @@ class SignUpFragment : Fragment() {
                     binding.passwordEt.text.toString(),
                     binding.nameEt.text.toString()
                 )
-                findNavController().navigate(R.id.action_signUpFragment_to_feedFragment)
+                findNavController().navigateUp()
             }
         }
         return binding.root
