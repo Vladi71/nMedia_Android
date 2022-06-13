@@ -47,7 +47,6 @@ class PostRemoteMediator @Inject constructor(
             db.withTransaction {
                 when (loadType) {
                     LoadType.REFRESH -> {
-                        postDao.removeAll()
                         postRemoteKeyDao.insert(
                             listOf(
                                 PostRemoteKeyEntity(
@@ -61,14 +60,7 @@ class PostRemoteMediator @Inject constructor(
                             )
                         )
                     }
-                    LoadType.PREPEND -> {
-                        postRemoteKeyDao.insert(
-                            PostRemoteKeyEntity(
-                                type = PostRemoteKeyEntity.KeyType.AFTER,
-                                id = body.first().id,
-                            )
-                        )
-                    }
+
                     LoadType.APPEND -> {
                         postRemoteKeyDao.insert(
                             PostRemoteKeyEntity(
