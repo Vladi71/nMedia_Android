@@ -6,20 +6,20 @@ import java.lang.System;
 public final class PostAdapter extends androidx.paging.PagingDataAdapter<ru.netology.dto.Post, ru.netology.adapter.PostViewHolder> {
     private final ru.netology.adapter.OnInteractionListener OnInteractionListener = null;
     
-    public PostAdapter(@org.jetbrains.annotations.NotNull
+    public PostAdapter(@org.jetbrains.annotations.NotNull()
     ru.netology.adapter.OnInteractionListener OnInteractionListener) {
         super(null, null, null);
     }
     
-    @org.jetbrains.annotations.NotNull
-    @java.lang.Override
-    public ru.netology.adapter.PostViewHolder onCreateViewHolder(@org.jetbrains.annotations.NotNull
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public ru.netology.adapter.PostViewHolder onCreateViewHolder(@org.jetbrains.annotations.NotNull()
     android.view.ViewGroup parent, int viewType) {
         return null;
     }
     
-    @java.lang.Override
-    public void onBindViewHolder(@org.jetbrains.annotations.NotNull
+    @java.lang.Override()
+    public void onBindViewHolder(@org.jetbrains.annotations.NotNull()
     ru.netology.adapter.PostViewHolder holder, int position) {
     }
 }

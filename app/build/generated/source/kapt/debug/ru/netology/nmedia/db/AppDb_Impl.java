@@ -25,10 +25,14 @@ import java.util.Map;
 import java.util.Set;
 import ru.netology.dao.PostDao;
 import ru.netology.dao.PostDao_Impl;
+import ru.netology.dao.PostRemoteKeyDao;
+import ru.netology.dao.PostRemoteKeyDao_Impl;
 
 @SuppressWarnings({"unchecked", "deprecation"})
 public final class AppDb_Impl extends AppDb {
   private volatile PostDao _postDao;
+
+  private volatile PostRemoteKeyDao _postRemoteKeyDao;
 
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
@@ -36,13 +40,15 @@ public final class AppDb_Impl extends AppDb {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `PostEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `authorId` INTEGER NOT NULL, `author` TEXT NOT NULL, `authorAvatar` TEXT NOT NULL, `content` TEXT NOT NULL, `published` INTEGER NOT NULL, `likedByMe` INTEGER NOT NULL, `likes` INTEGER NOT NULL, `showOrNot` INTEGER NOT NULL, `url` TEXT, `type` TEXT)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `PostRemoteKeyEntity` (`type` TEXT NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`type`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '12a8555cb35d31c91312cef12fa2ecaf')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '68fb5d2a7377a6a69556a591719dc2ea')");
       }
 
       @Override
       public void dropAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("DROP TABLE IF EXISTS `PostEntity`");
+        _db.execSQL("DROP TABLE IF EXISTS `PostRemoteKeyEntity`");
         if (mCallbacks != null) {
           for (int _i = 0, _size = mCallbacks.size(); _i < _size; _i++) {
             mCallbacks.get(_i).onDestructiveMigration(_db);
@@ -102,9 +108,21 @@ public final class AppDb_Impl extends AppDb {
                   + " Expected:\n" + _infoPostEntity + "\n"
                   + " Found:\n" + _existingPostEntity);
         }
+        final HashMap<String, TableInfo.Column> _columnsPostRemoteKeyEntity = new HashMap<String, TableInfo.Column>(2);
+        _columnsPostRemoteKeyEntity.put("type", new TableInfo.Column("type", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPostRemoteKeyEntity.put("id", new TableInfo.Column("id", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysPostRemoteKeyEntity = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesPostRemoteKeyEntity = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoPostRemoteKeyEntity = new TableInfo("PostRemoteKeyEntity", _columnsPostRemoteKeyEntity, _foreignKeysPostRemoteKeyEntity, _indicesPostRemoteKeyEntity);
+        final TableInfo _existingPostRemoteKeyEntity = TableInfo.read(_db, "PostRemoteKeyEntity");
+        if (! _infoPostRemoteKeyEntity.equals(_existingPostRemoteKeyEntity)) {
+          return new RoomOpenHelper.ValidationResult(false, "PostRemoteKeyEntity(ru.netology.entity.PostRemoteKeyEntity).\n"
+                  + " Expected:\n" + _infoPostRemoteKeyEntity + "\n"
+                  + " Found:\n" + _existingPostRemoteKeyEntity);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "12a8555cb35d31c91312cef12fa2ecaf", "bcadfb021283bb658efce081a375cd0e");
+    }, "68fb5d2a7377a6a69556a591719dc2ea", "5d977c2d5b3e78272b346affaa7392b4");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -117,7 +135,7 @@ public final class AppDb_Impl extends AppDb {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "PostEntity");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "PostEntity","PostRemoteKeyEntity");
   }
 
   @Override
@@ -127,6 +145,7 @@ public final class AppDb_Impl extends AppDb {
     try {
       super.beginTransaction();
       _db.execSQL("DELETE FROM `PostEntity`");
+      _db.execSQL("DELETE FROM `PostRemoteKeyEntity`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -141,6 +160,7 @@ public final class AppDb_Impl extends AppDb {
   protected Map<Class<?>, List<Class<?>>> getRequiredTypeConverters() {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
     _typeConvertersMap.put(PostDao.class, PostDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(PostRemoteKeyDao.class, PostRemoteKeyDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -154,6 +174,20 @@ public final class AppDb_Impl extends AppDb {
           _postDao = new PostDao_Impl(this);
         }
         return _postDao;
+      }
+    }
+  }
+
+  @Override
+  public PostRemoteKeyDao postRemoteKeyDao() {
+    if (_postRemoteKeyDao != null) {
+      return _postRemoteKeyDao;
+    } else {
+      synchronized(this) {
+        if(_postRemoteKeyDao == null) {
+          _postRemoteKeyDao = new PostRemoteKeyDao_Impl(this);
+        }
+        return _postRemoteKeyDao;
       }
     }
   }

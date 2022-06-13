@@ -1,9 +1,10 @@
 package ru.netology.repository
 
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.map
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -16,7 +17,6 @@ import ru.netology.dto.Media
 import ru.netology.dto.MediaUpload
 import ru.netology.dto.Post
 import ru.netology.entity.PostEntity
-import ru.netology.entity.toDto
 import ru.netology.entity.toEntity
 import ru.netology.error.*
 import ru.netology.nmedia.enumeration.AttachmentType
@@ -27,13 +27,21 @@ import javax.inject.Inject
 
 class PostRepositoryImpl @Inject constructor(
     private val dao: PostDao,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    remoteMediator: PostRemoteMediator
 ) : PostRepository {
 
+    @OptIn(ExperimentalPagingApi::class)
     override val data = Pager(
         PagingConfig(pageSize = 25, enablePlaceholders = false),
-        pagingSourceFactory = { PostPagingSource(apiService) },
+        remoteMediator = remoteMediator,
+        pagingSourceFactory = { dao.getAll() },
     ).flow
+        .map {
+            it.map {
+                it.toDto()
+            }
+        }
 
     override suspend fun getAll() {
         try {
