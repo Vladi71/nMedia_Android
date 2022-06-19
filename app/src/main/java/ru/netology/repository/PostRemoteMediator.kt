@@ -25,9 +25,17 @@ class PostRemoteMediator @Inject constructor(
     ): MediatorResult {
         try {
             val response = when (loadType) {
-                LoadType.REFRESH -> service.getLatest(state.config.pageSize)
+                LoadType.REFRESH -> {
+                    val id: Long? = postRemoteKeyDao.max()
+
+                    if (id != null) {
+                        service.getAfter(id, state.config.initialLoadSize)
+                    } else {
+                        service.getLatest(state.config.initialLoadSize)
+                    }
+                }
                 LoadType.PREPEND -> service.getAfter(
-                    postRemoteKeyDao.max() ?: return MediatorResult.Success(false),
+                    postRemoteKeyDao.max() ?: return MediatorResult.Success(true),
                     state.config.pageSize
                 )
                 LoadType.APPEND -> service.getBefore(
