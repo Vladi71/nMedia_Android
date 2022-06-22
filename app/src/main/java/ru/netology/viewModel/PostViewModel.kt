@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import androidx.lifecycle.switchMap
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.insertSeparators
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -14,6 +15,8 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.netology.SingleLiveEvent
 import ru.netology.api.ApiService
+import ru.netology.dto.Ad
+import ru.netology.dto.FeedItem
 import ru.netology.dto.MediaUpload
 import ru.netology.dto.Post
 import ru.netology.model.FeedModel
@@ -25,6 +28,7 @@ import ru.netology.repository.PostRepository
 import ru.netology.repository.PostRepositoryImpl
 import java.io.File
 import javax.inject.Inject
+import kotlin.random.Random
 
 
 private val empty = Post(
@@ -49,12 +53,21 @@ class PostViewModel @Inject constructor(
         .data
         .cachedIn(viewModelScope)
 
-    val data: Flow<PagingData<Post>> = appAuth
+    val data: Flow<PagingData<FeedItem>> = appAuth
         .authStateFlow
         .flatMapLatest { (myId, _) ->
             cached.map { pagingData ->
                 pagingData.map { post ->
                     post.copy(ownedByMe = post.authorId == myId)
+                }.insertSeparators { previous, _ ->
+                   if ( previous?.id?.rem(5) == 0L){
+                       Ad(
+                           Random.nextLong(),
+                           "figma.ipg",
+                       )
+                   }else{
+                       null
+                   }
                 }
             }
         }
