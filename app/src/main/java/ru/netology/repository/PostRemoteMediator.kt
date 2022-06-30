@@ -34,10 +34,8 @@ class PostRemoteMediator @Inject constructor(
                         service.getLatest(state.config.initialLoadSize)
                     }
                 }
-                LoadType.PREPEND -> service.getAfter(
-                    postRemoteKeyDao.max() ?: return MediatorResult.Success(true),
-                    state.config.pageSize
-                )
+                LoadType.PREPEND -> return return MediatorResult.Success(true)
+
                 LoadType.APPEND -> service.getBefore(
                     postRemoteKeyDao.min() ?: return MediatorResult.Success(false),
                     state.config.pageSize
@@ -55,18 +53,27 @@ class PostRemoteMediator @Inject constructor(
             db.withTransaction {
                 when (loadType) {
                     LoadType.REFRESH -> {
-                        postRemoteKeyDao.insert(
-                            listOf(
+                        if (postDao.isEmpty()) {
+                            postRemoteKeyDao.insert(
+                                listOf(
+                                    PostRemoteKeyEntity(
+                                        type = PostRemoteKeyEntity.KeyType.AFTER,
+                                        id = body.first().id,
+                                    ),
+                                    PostRemoteKeyEntity(
+                                        type = PostRemoteKeyEntity.KeyType.BEFORE,
+                                        id = body.last().id,
+                                    )
+                                )
+                            )
+                        } else {
+                            postRemoteKeyDao.insert(
                                 PostRemoteKeyEntity(
                                     type = PostRemoteKeyEntity.KeyType.AFTER,
                                     id = body.first().id,
-                                ),
-                                PostRemoteKeyEntity(
-                                    type = PostRemoteKeyEntity.KeyType.AFTER,
-                                    id = body.last().id,
                                 )
                             )
-                        )
+                        }
                     }
                     LoadType.APPEND -> {
                         postRemoteKeyDao.insert(
