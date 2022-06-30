@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ru.netology.R
 import ru.netology.adapter.OnInteractionListener
+import ru.netology.adapter.PagingLoadStateAdapter
 import ru.netology.adapter.PostAdapter
 import ru.netology.databinding.FragmentFeedBinding
 import ru.netology.dto.Post
@@ -122,12 +123,18 @@ class FeedFragment : Fragment() {
             }
 
         })
-        binding.listPost.adapter = adapter
-        viewModel.dataState.observe(viewLifecycleOwner) { state ->
-            binding.progress.isVisible = state.loading
-            binding.swipeRefresh.isRefreshing = state.refreshing
-            binding.errorGroup.isVisible = state.error
-        }
+        binding.listPost.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter(object : PagingLoadStateAdapter.OnInteractionListener {
+                override fun onRetry() {
+                    adapter.retry()
+                }
+            }),
+            footer = PagingLoadStateAdapter(object : PagingLoadStateAdapter.OnInteractionListener {
+                override fun onRetry() {
+                    adapter.retry()
+                }
+            }),
+        )
 
         lifecycleScope.launchWhenCreated {
             viewModel.data.collectLatest { state ->
